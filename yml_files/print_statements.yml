@@ -5,16 +5,17 @@ LOGIN_SIGNUP_MENU : |
 
    1.LOGIN
    2.SIGNUP
+   3.Exit
 
 ROW_NOT_EXISTS_MESSAGE : 'Error!! Row does not exist'
 
-WRONG_INPUT_ENTERED_MESSAGE : 'Wrong input entered!! Please try again \n'
+WRONG_INPUT_ENTERED_MESSAGE : "Wrong input entered! Please try again.\n"
 
 PRINT_USERNAME : "Enter username : "
 
 PRINT_PASSWORD : 'Enter password : '
 
-ENTER_STRONG_PASSWORD : "\nEnter strong password!!!\n"
+ENTER_STRONG_PASSWORD : "\nEnter strong password!!\n"
 
 ENTER_ROLE : "Enter the role of the user : "
 
@@ -42,7 +43,7 @@ NO_DATA_FOUND : No tasks found!
 
 TASK_ADDED_SUCCESSFULLY : Task added successfully!
 
-TASK_DELETED_SUCCESSFULLY : \n Task deleted successfully!
+TASK_DELETED_SUCCESSFULLY : "\nTask deleted successfully!"
 
 TASK_DUE_DATE_UPDATED : Task due-date updated successfully!
 
@@ -80,11 +81,33 @@ WHICH_TASK_TO_DELETE : "Which task you want to delete : "
 
 ENTER_USER_ID : "Enter user id : "
 
-USERS_AVAILABLE : "\n Users available to assign tasks: \n"
+USERS_AVAILABLE : "\nUsers available to assign tasks: \n"
 
 WHICH_TASK : "Which task you want to update : "
 
 STATUS : |
-"Enter:
-  - 0 to reassign 
-  - 1 to complete   "
+  Enter :
+  0 to reassign 
+  1 to complete
+
+ONE : '1'
+
+TWO : '2'
+
+THREE : 3
+
+STR_THREE : '3'
+
+UPPER_Y : 'Y'
+
+LOWER_Y : 'y'
+
+TODAY : "Today"
+
+IMPORTANT : "Important"
+
+FOR_LATER : "For later"
+
+INVALID_USERNAME : "INVALID USERNAME!\n"
+
+INVALID_INPUT : "INVALID INPUT!\n"

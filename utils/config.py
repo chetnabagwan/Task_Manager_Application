@@ -65,6 +65,17 @@ class Config:
             cls.USERS_AVAILABLE = data['USERS_AVAILABLE']
             cls.WHICH_TASK = data['WHICH_TASK']
             cls.STATUS = data['STATUS']
+            cls.ONE = data['ONE']
+            cls.TWO = data['TWO']
+            cls.UPPER_Y =data['UPPER_Y']
+            cls.LOWER_Y = data['LOWER_Y']
+            cls.TODAY = data['TODAY']
+            cls.IMPORTANT = data['IMPORTANT']
+            cls.FOR_LATER = data['FOR_LATER']
+            cls.THREE = data['THREE']
+            cls.STR_THREE = data['STR_THREE']
+            cls.INVALID_USERNAME = data['INVALID_USERNAME']
+            cls.INVALID_INPUT = data['INVALID_INPUT']
 
 
 

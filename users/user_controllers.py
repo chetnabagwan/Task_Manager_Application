@@ -1,6 +1,7 @@
 import sys
 import shortuuid
-from datetime import datetime,timedelta
+from datetime import datetime
+from utils.input_validation import username_validator
 from db.database_functions import add_data,update_data,fetch_data
 from utils.config import Config
 from tabulate import tabulate
@@ -13,7 +14,7 @@ class User:
     
     def user_menu(self):
         user_input = input(Config.ENTER_YOUR_CHOICE)
-        while user_input != '6':
+        while user_input != 'q':
             match user_input:
                 case '1':
                     self.create_new_tasks()
@@ -24,36 +25,59 @@ class User:
                 case '4':
                     self.delete_my_tasks()
                 case '5':
+                    return
+                case '6':
                     sys.exit()
-                #case '6': back return
                 case _:
                     print(Config.WRONG_INPUT_ENTERED_MESSAGE)
             print(Config.NEXT)
             print(Config.USER_PROMPT)
             user_input = input(Config.ENTER_YOUR_CHOICE)
         print(Config.THANKYOU)
+        
 
     
     def create_new_tasks(self): 
         task_id = int(shortuuid.ShortUUID('123456789').random(length=4))
-        task_name = input(Config.TASK_TITLE)
-        task_desc= input(Config.TASK_DESCRIPTION)
-        date_created = datetime.now()
-        yesterday = date_created - timedelta(days=1)
-        due_date = input(Config.ENTER_DATE_IN_FORMAT)
-        if yesterday < due_date:
-            pass
-        else:
-            print(Config.INVALID_DUE_DATE)
+        while True:
+            task_name = input(Config.TASK_TITLE).lower().strip() 
+            if username_validator(task_name) is False:
+                print(Config.INVALID_INPUT)
+            elif len(task_name) == 0:
+                print(Config.INVALID_INPUT)
+            else:
+                break
+        while True:
+            task_desc = input(Config.TASK_DESCRIPTION).lower().strip() 
+            if username_validator(task_desc)  is False:
+                print(Config.INVALID_INPUT)
+            elif len(task_name) == 0:
+                print(Config.INVALID_INPUT)
+            else:
+                break
+        
+        date_created = datetime.now().strftime("%d-%m-%Y")
+        while True:
+            due_date = input(Config.ENTER_DATE_IN_FORMAT)
+            
+            if due_date < date_created:
+                print(Config.INVALID_DUE_DATE)
+            elif len(due_date) < 10:
+                print(Config.INVALID_DUE_DATE)
+            else :
+                break
+
         print(Config.TASKS_CATEGORY_PROMPT)
         cat_choice=input(Config.ENTER_YOUR_CHOICE)
-        if cat_choice=='1' :
-            category='Today'
-        elif cat_choice=='2' :
-            category='Important'
+        if cat_choice == Config.ONE :
+            category = Config.TODAY
+        elif cat_choice == Config.TWO :
+            category = Config.IMPORTANT
+        elif cat_choice == Config.THREE:
+            category = Config.FOR_LATER
         else :
-            category='For_later'
-        
+            print("Wrong input!")
+         
         add_data(Config.INSERT_INTO_TASKS_TABLE,(task_id,self.user_id,task_name,task_desc,date_created,due_date,category))
         print(Config.TASK_ADDED_SUCCESSFULLY)
 
@@ -61,7 +85,7 @@ class User:
         task_name = input(Config.TASK_NAME_TO_UPDATE)
         print(Config.UPDATE_TASKS_OPTIONS)
         ch=input(Config.ENTER_YOUR_CHOICE)
-        if ch== '1' :
+        if ch== Config.ONE :
             updated_date=input(Config.ENTER_DATE_IN_FORMAT)
             update_data(Config.UPDATE_DUE_DATE,(updated_date,task_name))
             print(Config.TASK_DUE_DATE_UPDATED)

@@ -1,0 +1,32 @@
+06-39-2023 14:39:13 INFO     [main.py:18] Application started
+06-42-2023 14:42:56 INFO     [main.py:18] Application started
+06-44-2023 14:44:40 INFO     [main.py:18] Application started
+06-46-2023 14:46:59 INFO     [main.py:18] Application started
+06-52-2023 14:52:57 INFO     [manager_controllers.py:84] Manager:8839 is updating status of assigned tasks
+06-58-2023 14:58:21 INFO     [main.py:18] Application started
+06-58-2023 14:58:40 INFO     [main.py:18] Application started
+06-02-2023 15:02:06 INFO     [main.py:18] Application started
+06-05-2023 15:05:13 INFO     [main.py:18] Application started
+06-06-2023 15:06:48 INFO     [main.py:18] Application started
+06-10-2023 15:10:31 INFO     [main.py:18] Application started
+06-11-2023 15:11:59 INFO     [main.py:18] Application started
+06-13-2023 15:13:27 INFO     [main.py:18] Application started
+06-13-2023 15:13:40 INFO     [main.py:18] Application started
+06-14-2023 15:14:49 INFO     [main.py:18] Application started
+06-22-2023 15:22:30 INFO     [main.py:18] Application started
+06-24-2023 15:24:01 INFO     [main.py:18] Application started
+06-24-2023 15:24:39 INFO     [main.py:18] Application started
+06-46-2023 15:46:52 INFO     [main.py:18] Application started
+06-51-2023 15:51:27 INFO     [manager_controllers.py:47] Manager:8839 is assigning tasks to users.
+06-51-2023 15:51:32 INFO     [main.py:18] Application started
+06-51-2023 15:51:40 INFO     [manager_controllers.py:47] Manager:8839 is assigning tasks to users.
+06-53-2023 15:53:15 INFO     [main.py:18] Application started
+06-53-2023 15:53:25 INFO     [manager_controllers.py:47] Manager:8839 is assigning tasks to users.
+06-53-2023 15:53:25 INFO     [manager_controllers.py:41] Manager:8839 is viewing all users
+06-54-2023 15:54:47 INFO     [main.py:18] Application started
+06-54-2023 15:54:55 INFO     [manager_controllers.py:79] Manager:8839 is trying to view status of assigned tasks
+06-55-2023 15:55:13 INFO     [manager_controllers.py:88] Manager:8839 is updating status of assigned tasks
+06-55-2023 15:55:58 INFO     [manager_controllers.py:79] Manager:8839 is trying to view status of assigned tasks
+06-56-2023 15:56:16 INFO     [main.py:18] Application started
+06-00-2023 16:00:00 INFO     [main.py:18] Application started
+06-02-2023 16:02:57 INFO     [main.py:18] Application started

@@ -39,10 +39,14 @@ QUERY_TO_ADD_IN_AUTH_TABLE : |
                             VALUES(?,?,?,'user')
 
 QUERY_TO_VIEW_ALL_USERS : |
+ SELECT user_id,username FROM authentication 
+ WHERE role = 'user'
+ 
+QUERY_TO_VIEW_TASK_TABLE_USERS : |
  SELECT * FROM tasks
 
 INSERT_INTO_TASKS_TABLE_BY_MANAGER : |
-  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (?,?,?,?,?,?,'0',?,?)
+  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (?,?,?,?,?,?,'pending',?,?)
 
 INSERT_INTO_ASSIGNED_TASKS_TABLE : |
  INSERT INTO assigned_tasks (man_id, user_id, task_id) VALUES (?,?,?)

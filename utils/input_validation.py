@@ -10,4 +10,11 @@ def password_validation(password):
     else:
         return False
     
-print(password_validation("Chetna@12"))
+def username_validator(name):
+    reg = "[A-Za-z]+"
+    ans = re.match(reg,name)
+    if ans is not None:
+        return True
+    else:
+        return False
+

@@ -1,11 +1,14 @@
-import sys
 import shortuuid
+import logging
+import sys
 from datetime import datetime
+from utils.input_validation import username_validator
 from pprint import pprint
 from db.database_functions import add_data,update_data,fetch_data,display_data
 from utils.config import Config
 from tabulate import tabulate
 
+logger = logging.getLogger('main.manager_controllers')
 
 class Manager:
     def __init__(self,user_id):
@@ -14,48 +17,86 @@ class Manager:
 
     def manager_menu(self):
         user_input = input(Config.ENTER_YOUR_CHOICE)
-        while user_input != '5':
+        while user_input != 'q':
             match user_input:
                 case '1':
-                    Manager.view_all_users()
+                    self.view_all_users()
                 case '2':
                     self.assign_tasks_to_user()
                 case '3':
                     self.view_status_of_assigned_tasks()
                 case '4':
                    self.update_status_of_assigned_task()
+                case '5':
+                    return
+                case '6':
+                    sys.exit()
                 case _:
                     print(Config.WRONG_INPUT_ENTERED_MESSAGE)
+            print(Config.NEXT)
             user_input = input(Config.ENTER_YOUR_CHOICE)
         print(Config.THANKYOU)
-
-    @staticmethod
-    def view_all_users():
-        display_data(Config.QUERY_TO_VIEW_ALL_USERS)
+        
+    
+    def view_all_users(self):
+        logger.info(f'Manager:{self.user_id} is viewing all users')
+        users = display_data(Config.QUERY_TO_VIEW_ALL_USERS)
+        HEADERS = ["USER ID","USERNAME"]
+        print(tabulate(users,headers=HEADERS,tablefmt='rounded_outline'))
 
     def assign_tasks_to_user(self):
+        logger.info(f'Manager:{self.user_id} is assigning tasks to users.')
         print(Config.USERS_AVAILABLE)
-        display_data(Config.QUERY_TO_VIEW_ALL_USERS)
+        self.view_all_users()
         task_id = int(shortuuid.ShortUUID('123456789').random(length=4))
-        user=input(Config.ENTER_USER_ID)
-        task_name = input(Config.TASK_TITLE)
-        task_desc = input(Config.TASK_DESCRIPTION)
-        date_created = datetime.now()
-        due_date = input(Config.ENTER_DATE_IN_FORMAT)
+        while True:
+            user = input(Config.ENTER_USER_ID).strip() 
+            if len(user) < 4 and len(user) >4 :
+                print(Config.INVALID_INPUT)
+            else:
+                break
+        while True:
+            task_name = input(Config.TASK_TITLE).lower().strip() 
+            if username_validator(task_name) is False  :
+                print(Config.INVALID_INPUT)
+            elif len(task_name) == 0:
+                print(Config.INVALID_INPUT)
+            else:
+                break
+        while True:
+            task_desc = input(Config.TASK_DESCRIPTION).lower().strip() 
+            if username_validator(task_desc) is False :
+                print(Config.INVALID_INPUT)
+            elif len(task_desc) == 0:
+                print(Config.INVALID_INPUT)
+            else:
+                break
+
+        date_created = datetime.now().strftime("%d-%m-%Y")
+        while True:
+            due_date= input(Config.ENTER_DATE_IN_FORMAT)
+            if due_date < date_created:
+                print(Config.INVALID_DUE_DATE)
+                logger.info(f'Manager:{self.user_id} has given invalid duedate')
+            else :
+                break
+
         print(Config.TASKS_CATEGORY_PROMPT)
         cat_choice=input(Config.ENTER_YOUR_CHOICE)
-        if cat_choice=='1' :
-            category='Today'
-        elif cat_choice=='2' :
-            category='Important'
+        if cat_choice == Config.ONE:
+            category = Config.TODAY
+        elif cat_choice == Config.TWO :
+            category = Config.IMPORTANT
         else :
-            category='For_later'
+            category = Config.FOR_LATER
         
         add_data(Config.INSERT_INTO_TASKS_TABLE_BY_MANAGER,(task_id,user,task_name,task_desc,date_created,due_date,category,self.user_id))
         add_data(Config.INSERT_INTO_ASSIGNED_TASKS_TABLE,(self.user_id,user,task_id))
         print(Config.TASK_ASSIGNED_SUCCESSFULLY)
+        
 
     def view_status_of_assigned_tasks(self):
+        logger.info(f'Manager:{self.user_id} is trying to view status of assigned tasks')
         data = fetch_data(Config.VIEW_STATUS_OF_MY_ASSIGNED_TASKS,(self.user_id,))
         if len(data) == 0:
             print(Config.NO_DATA_FOUND)
@@ -63,12 +104,21 @@ class Manager:
             HEADERS = ['USER ID',"TASK ID","STATUS" ,"TASK NAME","TASK DESCRIPTION","DATE OF CREATION" ,"DUE DATE"]
             print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
 
-        
-        pprint(data)
-
     def update_status_of_assigned_task(self):
-        display_data(Config.QUERY_TO_VIEW_ALL_USERS)
-        task = input(Config.WHICH_TASK)
-        status = input(Config.STATUS)
-        update_data(Config.UPDATE_STATUS_OF_MY_ASSIGNED_TASKS,(status,task))
-        print(Config.TASK_STATUS_UPDATED)
+        logger.info(f'Manager:{self.user_id} is updating status of assigned tasks')
+        data = fetch_data(Config.VIEW_STATUS_OF_MY_ASSIGNED_TASKS,(self.user_id,))
+        if len(data) == 0:
+            print(Config.NO_DATA_FOUND)
+        else:
+            HEADERS = ['USER ID',"TASK ID","STATUS" ,"TASK NAME","TASK DESCRIPTION","DATE OF CREATION" ,"DUE DATE"]
+            print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
+
+            task = input(Config.WHICH_TASK)
+            s = input(Config.STATUS)
+            if s == 0:
+                status = "pending/reassigned"
+            else:
+                status = "complete"
+
+            update_data(Config.UPDATE_STATUS_OF_MY_ASSIGNED_TASKS,(status,task))
+            print(Config.TASK_STATUS_UPDATED)

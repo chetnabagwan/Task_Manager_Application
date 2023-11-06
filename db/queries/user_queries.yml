@@ -6,7 +6,7 @@ TASKS_CATEGORY_PROMPT : |
     3.For_later
 
 INSERT_INTO_TASKS_TABLE : |
-  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (?,?,?,?,?,?,'0',?,'myself')
+  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (?,?,?,?,?,?,'pending',?,'myself')
     
 UPDATE_TASKS_OPTIONS: |
  1.Update due date
@@ -19,7 +19,7 @@ UPDATE_DUE_DATE : |
 
 UPDATE_TASK_STATUS : |
  UPDATE tasks
- SET is_completed = 1
+ SET is_completed = "complete"
  WHERE task_name = ?
 
 VIEW_TASKS : |

@@ -1,10 +1,8 @@
-import hashlib
 import logging
-import sys
 from utils.config import Config
 from utils import config
 from .database_connection import DatabaseContextManager
-from pprint import pprint
+
 
 DATABASE_NAME = 'data.db'
 def create_table(query) -> None:
@@ -46,5 +44,5 @@ def display_data(query):
         cursor = connection.cursor()  
         cursor.execute(Config.QUERY_TO_ENABLE_FOREIGN_KEY)
         data = cursor.execute(query).fetchall()
-        pprint(data)
+        return data
     
