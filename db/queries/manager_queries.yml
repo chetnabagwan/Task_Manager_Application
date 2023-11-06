@@ -1,0 +1,59 @@
+QUERY_FOR_CREATE_AUTH_TABLE : |
+                              CREATE TABLE IF NOT EXISTS authentication
+                              (user_id INTEGER PRIMARY KEY,
+                              username TEXT, 
+                              password TEXT, 
+                              role TEXT,
+                              is_changed DEFAULT INTEGER) 
+                            
+QUERY_FOR_CREATE_TASKS_TABLE : |
+                              CREATE TABLE IF NOT EXISTS tasks
+                              (task_id INTEGER PRIMARY KEY,
+                              user_id INTEGER, 
+                              task_name TEXT, 
+                              task_desc TEXT,
+                              date_created DATE,
+                              due_date DATE,
+                              is_completed INTEGER DEFAULT 0,
+                              category TEXT,
+                              assigned_by TEXT,
+                              FOREIGN KEY (user_id) REFERENCES authentication(user_id) ON DELETE CASCADE) 
+
+QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE : |
+                              CREATE TABLE IF NOT EXISTS assigned_tasks
+                              (man_id INTEGER PRIMARY KEY,
+                              user_id INTEGER, 
+                              task_id INTEGER, 
+                              FOREIGN KEY (user_id) REFERENCES authentication(user_id) ON DELETE CASCADE,
+                              FOREIGN KEY (task_id) REFERENCES tasks(task_id) ON DELETE CASCADE) 
+
+QUERY_TO_VERIFY_LOGIN : |
+    SELECT * FROM authentication
+    WHERE username=? AND password=?
+
+QUERY_TO_ENABLE_FOREIGN_KEY : PRAGMA foreign_keys = 1
+
+QUERY_TO_ADD_IN_AUTH_TABLE : |
+                            INSERT INTO authentication
+                            (user_id,username,password,role) 
+                            VALUES(?,?,?,'user')
+
+QUERY_TO_VIEW_ALL_USERS : |
+ SELECT * FROM tasks
+
+INSERT_INTO_TASKS_TABLE_BY_MANAGER : |
+  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (?,?,?,?,?,?,'0',?,?)
+
+INSERT_INTO_ASSIGNED_TASKS_TABLE : |
+ INSERT INTO assigned_tasks (man_id, user_id, task_id) VALUES (?,?,?)
+
+VIEW_STATUS_OF_MY_ASSIGNED_TASKS : |
+ SELECT a.user_id,a.task_id,t.is_completed,t.task_name,t.task_desc,t.date_created,t.due_date
+ FROM assigned_tasks AS a INNER JOIN tasks AS t
+ ON a.task_id = t.task_id
+ WHERE t.assigned_by = ?
+
+UPDATE_STATUS_OF_MY_ASSIGNED_TASKS : |
+ UPDATE tasks
+ SET is_completed=?
+ WHERE task_id =?      

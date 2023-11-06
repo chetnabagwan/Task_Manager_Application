@@ -1,0 +1,15 @@
+WELCOME_LOGGING_INFO  : Welcome to Task Manager Aplication
+
+WRONG_FILE_RUNNED : "Wrong file run. Run main.py for running the program."
+
+REGISTERED_SUCCESSFULLY : "Registered new user succesfully."
+
+DELETED_SUCCESSFULLY : "Deleted user successfully."
+
+UPDATED_SUCCESSFULLY : "Updated successfully"
+
+LOGGED_IN : "User logged in"
+
+ERROR_MESSAGE: "Unexpected Error occured"
+
+LOGIN_ATTEMPTS_EXCEEDED : Login Attempts Exceeded!!!

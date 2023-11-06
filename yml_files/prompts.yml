@@ -1,0 +1,28 @@
+MANAGER_PROMPT : |
+
+  1.View users
+  2.Assign tasks 
+  3.View status of assigned tasks
+  4.Update status of assigned tasks
+  5.Exit
+
+USER_PROMPT : |
+  
+  1.Create new tasks
+  2.Update tasks
+  3.View tasks
+  4.Delete tasks
+  5.Exit
+
+ATTEMPTS : 3
+
+MANAGER : "MANAGER"
+
+PASSWORD_REQUIREMENTS : | 
+ A strong password :
+
+  -> Should have at least one number.
+  -> Should have at least one uppercase and one lowercase character.
+  -> Should have at least one special symbol.
+  -> Should be between 6 to 20 characters long.
+

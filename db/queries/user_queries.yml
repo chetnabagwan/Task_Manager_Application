@@ -1,0 +1,32 @@
+TASKS_CATEGORY_PROMPT : |
+  Task's categories:
+    ENTER:
+    1.Today
+    2.Important
+    3.For_later
+
+INSERT_INTO_TASKS_TABLE : |
+  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (?,?,?,?,?,?,'0',?,'myself')
+    
+UPDATE_TASKS_OPTIONS: |
+ 1.Update due date
+ 2.Update task status
+
+UPDATE_DUE_DATE : |
+  UPDATE tasks
+  SET due_date = ?
+  WHERE task_name = ?
+
+UPDATE_TASK_STATUS : |
+ UPDATE tasks
+ SET is_completed = 1
+ WHERE task_name = ?
+
+VIEW_TASKS : |
+ SELECT * FROM tasks WHERE user_id = ?
+
+VIEW_TASKS_TO_DELETE : SELECT * FROM tasks WHERE user_id = ? AND assigned_by = "myself"
+
+DELETE_MY_TASKS : |
+ DELETE from tasks WHERE user_id = ? AND task_id=? AND assigned_by = 'myself'
+

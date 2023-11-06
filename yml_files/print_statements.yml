@@ -1,0 +1,90 @@
+WELCOME_MESSAGE : '------------Welcome to TASK MANAGER APPLICATION--------------'
+
+LOGIN_SIGNUP_MENU : |
+  What do you want to do?
+
+   1.LOGIN
+   2.SIGNUP
+
+ROW_NOT_EXISTS_MESSAGE : 'Error!! Row does not exist'
+
+WRONG_INPUT_ENTERED_MESSAGE : 'Wrong input entered!! Please try again \n'
+
+PRINT_USERNAME : "Enter username : "
+
+PRINT_PASSWORD : 'Enter password : '
+
+ENTER_STRONG_PASSWORD : "\nEnter strong password!!!\n"
+
+ENTER_ROLE : "Enter the role of the user : "
+
+WELCOME_MANAGER_MESSAGE : Welcome Manager!
+
+WELCOME_USER_MESSAGE : Welcome User!
+
+ENTER_DEFAULT_PASSWORD : 'Enter your default password : '
+
+ENTER_NEW_PASSWORD : 'Enter new password : '
+
+CONFIRM_PASSWORD : 'Enter new password to confirm : '
+
+PRINT_LOGIN : "Login into the system. You have  3 attempts!"
+
+LOGIN_FAILED : Login failed!! Try again. Total attempts left
+
+NO_TASKS_FOUND : "No tasks found!"
+
+NO_TASKS_FOUND_TO_BE_DELETED : "You haven't assigned any tasks to yourself yet."
+
+YOUR_TASKS_ARE : "Your tasks are : "
+
+NO_DATA_FOUND : No tasks found!
+
+TASK_ADDED_SUCCESSFULLY : Task added successfully!
+
+TASK_DELETED_SUCCESSFULLY : \n Task deleted successfully!
+
+TASK_DUE_DATE_UPDATED : Task due-date updated successfully!
+
+TASK_STATUS_UPDATED : Task status updated successfully!
+
+ENTER_YOUR_CHOICE : "\nEnter your choice : " 
+
+ASK_FOR_LOGIN : "Want to Login? Y/N : "
+
+LOGIN_SUCCESSFUL : "\nLogin Successful!\n"
+
+INVALID_CREDENTIALS : "\nInvalid Credentials!\n"
+
+SIGNUP_SUCCESSFUL : "Signed up successfully!\n"
+
+THANKYOU : "\nThankyou!\n"
+
+TASK_ASSIGNED_SUCCESSFULLY : "Task assigned successfully!"
+
+INVALID_DUE_DATE : "\nInvalid due-date!"
+
+NEXT : "\nWhat do you want to do next?"
+
+TASK_TITLE : "Task title : " 
+
+TASK_DESCRIPTION : "Task Description : "
+
+ENTER_DATE_IN_FORMAT : "Enter Task Due date in DD-MM-YYYY format : "
+
+TASK_NAME_TO_UPDATE : "Name of the task you want to update : "
+
+TASKS_THAT_CAN_BE_DELETED : "\nYou can delete only these tasks which are assigned by yourself : \n"
+
+WHICH_TASK_TO_DELETE : "Which task you want to delete : "
+
+ENTER_USER_ID : "Enter user id : "
+
+USERS_AVAILABLE : "\n Users available to assign tasks: \n"
+
+WHICH_TASK : "Which task you want to update : "
+
+STATUS : |
+"Enter:
+  - 0 to reassign 
+  - 1 to complete   "
