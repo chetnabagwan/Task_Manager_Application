@@ -30,3 +30,39 @@
 06-56-2023 15:56:16 INFO     [main.py:18] Application started
 06-00-2023 16:00:00 INFO     [main.py:18] Application started
 06-02-2023 16:02:57 INFO     [main.py:18] Application started
+06-46-2023 17:46:31 INFO     [main.py:18] Application started
+06-46-2023 17:46:37 INFO     [main.py:18] Application started
+06-46-2023 17:46:46 INFO     [manager_controllers.py:42] Manager:8839 is viewing all users
+06-55-2023 17:55:47 INFO     [main.py:18] Application started
+06-55-2023 17:55:58 INFO     [manager_controllers.py:45] Manager:8839 is viewing all users
+06-56-2023 17:56:36 INFO     [main.py:18] Application started
+06-56-2023 17:56:43 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+06-57-2023 17:57:13 INFO     [main.py:18] Application started
+06-57-2023 17:57:24 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+06-58-2023 17:58:09 INFO     [main.py:18] Application started
+06-58-2023 17:58:17 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+06-04-2023 18:04:08 INFO     [main.py:18] Application started
+06-04-2023 18:04:57 INFO     [manager_controllers.py:48] Manager:8839 is viewing all users
+06-27-2023 22:27:53 INFO     [main.py:18] Application started
+06-28-2023 22:28:02 INFO     [manager_controllers.py:48] Manager:8839 is viewing all users
+06-28-2023 22:28:07 INFO     [manager_controllers.py:54] Manager:8839 is assigning tasks to users.
+06-28-2023 22:28:07 INFO     [manager_controllers.py:48] Manager:8839 is viewing all users
+06-32-2023 22:32:11 INFO     [manager_controllers.py:86] Manager:8839 has given invalid duedate
+06-32-2023 22:32:39 INFO     [manager_controllers.py:86] Manager:8839 has given invalid duedate
+06-33-2023 22:33:37 INFO     [main.py:18] Application started
+06-33-2023 22:33:55 INFO     [manager_controllers.py:54] Manager:8839 is assigning tasks to users.
+06-33-2023 22:33:55 INFO     [manager_controllers.py:48] Manager:8839 is viewing all users
+16-17-2023 13:17:27 INFO     [main.py:18] Application started
+16-17-2023 13:17:35 INFO     [main.py:27] Application ended
+16-19-2023 13:19:24 INFO     [main.py:18] Application started
+16-19-2023 13:19:39 INFO     [main.py:18] Application started
+16-21-2023 13:21:18 INFO     [main.py:18] Application started
+16-21-2023 13:21:49 INFO     [main.py:18] Application started
+16-24-2023 13:24:20 INFO     [main.py:18] Application started
+16-24-2023 13:24:36 INFO     [manager_controllers.py:48] Manager:8839 is viewing all users
+16-07-2023 14:07:41 INFO     [main.py:18] Application started
+16-08-2023 14:08:26 INFO     [main.py:18] Application started
+16-19-2023 14:19:24 INFO     [main.py:20] Application started
+16-40-2023 16:40:01 INFO     [main.py:20] Application started
+16-41-2023 16:41:30 INFO     [main.py:20] Application started
+16-42-2023 16:42:10 INFO     [main.py:20] Application started

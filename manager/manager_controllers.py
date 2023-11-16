@@ -1,9 +1,9 @@
 import shortuuid
 import logging
 import sys
+import os
 from datetime import datetime
 from utils.input_validation import username_validator
-from pprint import pprint
 from db.database_functions import add_data,update_data,fetch_data,display_data
 from utils.config import Config
 from tabulate import tabulate
@@ -17,25 +17,30 @@ class Manager:
 
     def manager_menu(self):
         user_input = input(Config.ENTER_YOUR_CHOICE)
-        while user_input != 'q':
-            match user_input:
-                case '1':
-                    self.view_all_users()
-                case '2':
-                    self.assign_tasks_to_user()
-                case '3':
-                    self.view_status_of_assigned_tasks()
-                case '4':
-                   self.update_status_of_assigned_task()
-                case '5':
-                    return
-                case '6':
-                    sys.exit()
-                case _:
-                    print(Config.WRONG_INPUT_ENTERED_MESSAGE)
-            print(Config.NEXT)
-            user_input = input(Config.ENTER_YOUR_CHOICE)
-        print(Config.THANKYOU)
+        while True:
+            while user_input != 'q':
+                match user_input:
+                    case '1':
+                        self.view_all_users()
+                        
+                    case '2':
+                        self.assign_tasks_to_user()
+                    case '3':
+                        self.view_status_of_assigned_tasks()
+                    case '4':
+                        self.update_status_of_assigned_task()
+                    case '5':
+                        os.system('cls') 
+                        return
+                    case '6':
+                        sys.exit()
+                    case _:
+                        print(Config.WRONG_INPUT_ENTERED_MESSAGE)
+                print(Config.NEXT)
+                print(Config.MANAGER_PROMPT)
+                user_input = input(Config.ENTER_YOUR_CHOICE)
+                
+            print(Config.THANKYOU)
         
     
     def view_all_users(self):

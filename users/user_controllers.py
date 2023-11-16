@@ -1,4 +1,5 @@
 import sys
+import os
 import shortuuid
 from datetime import datetime
 from utils.input_validation import username_validator
@@ -25,6 +26,7 @@ class User:
                 case '4':
                     self.delete_my_tasks()
                 case '5':
+                    os.system('cls') 
                     return
                 case '6':
                     sys.exit()

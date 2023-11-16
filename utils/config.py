@@ -1,4 +1,6 @@
 import yaml
+
+
 FPATH = 'yml_files\\prompts.yml'
 FPATH_PRINT_STATEMENTS = 'yml_files\\print_statements.yml'
 FPATH_LOGGING_STATEMENTS = 'yml_files\\logging_statements.yml'
@@ -15,6 +17,8 @@ class Config:
             data = yaml.safe_load(f)
             cls.MANAGER_PROMPT = data['MANAGER_PROMPT']
             cls.USER_PROMPT = data['USER_PROMPT']
+            cls.MANAGER_PROMPT_WLCM = data['MANAGER_PROMPT_WLCM']
+            cls.USER_PROMPT_WLCM = data['USER_PROMPT_WLCM']
             cls.ATTEMPTS = data['ATTEMPTS']
             cls.PASSWORD_REQUIREMENTS = data['PASSWORD_REQUIREMENTS']
             cls.MANAGER = data['MANAGER']
@@ -79,19 +83,7 @@ class Config:
 
 
 
-    """ @classmethod
-    def load_logging_statements(cls):
-        with open(FPATH_LOGGING_STATEMENTS,'r') as f:
-            data = yaml.safe_load(f)
-            cls.WELCOME_LOGGING_INFO = data['WELCOME_LOGGING_INFO']
-            cls.WRONG_FILE_RUNNED = data['WRONG_FILE_RUNNED']
-            cls.REGISTERED_SUCCESSFULLY = data['REGISTERED_SUCCESSFULLY']
-            cls.DELETED_SUCCESSFULLY = data['DELETED_SUCCESSFULLY']
-            cls.UPDATED_SUCCESSFULLY = data['UPDATED_SUCCESSFULLY']
-            cls.LOGGED_IN = data['LOGGED_IN']
-            cls.ERROR_MESSAGE = data['ERROR_MESSAGE']
-            cls.LOGIN_ATTEMPTS_EXCEEDED : data['LOGIN_ATTEMPTS_EXCEEDED']
- """
+
     @classmethod
     def loadManagerQueries(cls):
         with open(F_PATH_MANAGER_QUERIES, 'r') as f:
@@ -121,4 +113,14 @@ class Config:
             cls.DELETE_MY_TASKS = data['DELETE_MY_TASKS']
             cls.VIEW_TASKS_TO_DELETE = data['VIEW_TASKS_TO_DELETE']
             
-            
+    @classmethod
+    def loader(cls,func):
+        def wrapper_func():
+            Config.load()
+            Config.loadManagerQueries()
+            Config.loadUserQueries()
+            Config.load_print_statements()
+            func()      
+
+        return wrapper_func
+    

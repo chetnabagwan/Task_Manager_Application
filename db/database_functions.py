@@ -1,6 +1,5 @@
 import logging
 from utils.config import Config
-from utils import config
 from .database_connection import DatabaseContextManager
 
 
