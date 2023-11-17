@@ -41,8 +41,7 @@ class Manager:
                 user_input = input(Config.ENTER_YOUR_CHOICE)
                 
             print(Config.THANKYOU)
-        
-    
+  
     def view_all_users(self):
         logger.info(f'Manager:{self.user_id} is viewing all users')
         users = display_data(Config.QUERY_TO_VIEW_ALL_USERS)
@@ -98,7 +97,6 @@ class Manager:
         add_data(Config.INSERT_INTO_TASKS_TABLE_BY_MANAGER,(task_id,user,task_name,task_desc,date_created,due_date,category,self.user_id))
         add_data(Config.INSERT_INTO_ASSIGNED_TASKS_TABLE,(self.user_id,user,task_id))
         print(Config.TASK_ASSIGNED_SUCCESSFULLY)
-        
 
     def view_status_of_assigned_tasks(self):
         logger.info(f'Manager:{self.user_id} is trying to view status of assigned tasks')
@@ -117,13 +115,30 @@ class Manager:
         else:
             HEADERS = ['USER ID',"TASK ID","STATUS" ,"TASK NAME","TASK DESCRIPTION","DATE OF CREATION" ,"DUE DATE"]
             print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
+            
+            task = input(Config.WHICH_TASK).strip()
+            while len(task) == 0 or len(task) > 4:
+                print(Config.INVALID_INPUT)
+                task = input(Config.WHICH_TASK).strip()
+            
+            data = fetch_data(Config.QUERY_TO_FETCH_ALL_TASK_IDS,(task,))
+            while len(data) == 0:
+                print(Config.TASKID_NOT_FOUND)
+                task = input(Config.WHICH_TASK).strip()
+                data = fetch_data(Config.QUERY_TO_FETCH_ALL_TASK_IDS,(task,))
 
-            task = input(Config.WHICH_TASK)
-            s = input(Config.STATUS)
-            if s == 0:
-                status = "pending/reassigned"
-            else:
-                status = "complete"
-
+            status =""
+            while True:
+                s = input(Config.STATUS)
+                if s == '0':
+                    status = "pending"
+                    break
+                elif s=='1':
+                    status = "completed"
+                    break
+                else:
+                    print(Config.INVALID_INPUT)
+                    
+                
             update_data(Config.UPDATE_STATUS_OF_MY_ASSIGNED_TASKS,(status,task))
             print(Config.TASK_STATUS_UPDATED)

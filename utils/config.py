@@ -80,6 +80,7 @@ class Config:
             cls.STR_THREE = data['STR_THREE']
             cls.INVALID_USERNAME = data['INVALID_USERNAME']
             cls.INVALID_INPUT = data['INVALID_INPUT']
+            cls.TASKID_NOT_FOUND = data['TASKID_NOT_FOUND']
 
 
 
@@ -99,6 +100,7 @@ class Config:
             cls.INSERT_INTO_ASSIGNED_TASKS_TABLE = data['INSERT_INTO_ASSIGNED_TASKS_TABLE']
             cls.VIEW_STATUS_OF_MY_ASSIGNED_TASKS  = data['VIEW_STATUS_OF_MY_ASSIGNED_TASKS']
             cls.UPDATE_STATUS_OF_MY_ASSIGNED_TASKS = data['UPDATE_STATUS_OF_MY_ASSIGNED_TASKS']
+            cls.QUERY_TO_FETCH_ALL_TASK_IDS = data['QUERY_TO_FETCH_ALL_TASK_IDS']
 
     @classmethod
     def loadUserQueries(cls):
