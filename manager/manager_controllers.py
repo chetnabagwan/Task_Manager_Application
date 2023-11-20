@@ -96,7 +96,7 @@ class Manager:
         else :
             category = Config.FOR_LATER
         
-        add_data(Config.INSERT_INTO_TASKS_TABLE_BY_MANAGER,(task_id,user,task_name,task_desc,date_created,due_date,category,self.user_id))
+        add_data(Config.INSERT_INTO_TASKS_TABLE_BY_MANAGER,(task_id,user,task_name,task_desc,today_date,due_date,category,self.user_id))
         add_data(Config.INSERT_INTO_ASSIGNED_TASKS_TABLE,(self.user_id,user,task_id))
         print(Config.TASK_ASSIGNED_SUCCESSFULLY)
 
