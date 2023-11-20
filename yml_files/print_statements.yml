@@ -81,6 +81,8 @@ WHICH_TASK : "Which task you want to update : "
 
 ATTEMPTS_EXHAUSTED : "\nAttempts Exhausted! Wait.....\n "
 
+DB_CONNECTION_ERROR : "\nDatabase Connection error\n"
+
 STATUS : |
   Enter :
   0 to reassign 

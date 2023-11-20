@@ -13,7 +13,6 @@ logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d
                     datefmt="%d-%M-%Y %H:%M:%S", level=logging.DEBUG, filename='utils/logs.log')
 logger = logging.getLogger("main")
 
-
 @Config.loader
 def main():
     logger.info('Application started')
@@ -22,5 +21,6 @@ def main():
     create_table(Config.QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE)
     print(Config.WELCOME_MESSAGE)
     MainMenu.start()
+    logger.info('Application started')
     
 main()

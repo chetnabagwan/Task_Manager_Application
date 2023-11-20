@@ -1,11 +1,14 @@
 import sys
 import os
 import shortuuid
+import logging
 from datetime import datetime
 from utils.input_validation import username_validator
 from db.database_functions import add_data,update_data,fetch_data
 from utils.config import Config
 from tabulate import tabulate
+
+logger = logging.getLogger('main.user_controllers')
 
 class User:
     
@@ -40,6 +43,7 @@ class User:
 
     
     def create_new_tasks(self): 
+        logger.info(f'User:{self.user_id} is creating new tasks.')
         task_id = int(shortuuid.ShortUUID('123456789').random(length=4))
         while True:
             task_name = input(Config.TASK_TITLE).lower().strip() 
@@ -84,6 +88,7 @@ class User:
         print(Config.TASK_ADDED_SUCCESSFULLY)
 
     def update_my_tasks(self):
+        logger.info(f'User:{self.user_id} is updating tasks.')
         task_name = input(Config.TASK_NAME_TO_UPDATE)
         print(Config.UPDATE_TASKS_OPTIONS)
         ch=input(Config.ENTER_YOUR_CHOICE)
@@ -96,6 +101,7 @@ class User:
             print(Config.TASK_STATUS_UPDATED)
 
     def view_my_tasks(self):
+        logger.info(f'User:{self.user_id} is viewing tasks.')
         data=fetch_data(Config.VIEW_TASKS,(self.user_id,))
         if len(data) == 0 :
             print(Config.NO_DATA_FOUND)
@@ -106,6 +112,7 @@ class User:
             print(tabulate(data,headers=HEADERS,tablefmt='rounded_outline'))
 
     def delete_my_tasks(self):
+        logger.info(f'User:{self.user_id} is trying to delete tasks.')
         data=fetch_data(Config.VIEW_TASKS_TO_DELETE,(self.user_id,))
         if len(data) == 0 :
             print(Config.NO_TASKS_FOUND_TO_BE_DELETED)

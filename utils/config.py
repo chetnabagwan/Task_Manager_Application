@@ -79,6 +79,7 @@ class Config:
             cls.INVALID_INPUT = data['INVALID_INPUT']
             cls.TASKID_NOT_FOUND = data['TASKID_NOT_FOUND']
             cls.ATTEMPTS_EXHAUSTED = data['ATTEMPTS_EXHAUSTED']
+            cls.DB_CONNECTION_ERROR = data['DB_CONNECTION_ERROR']
 
 
 
