@@ -1,4 +1,5 @@
 import hashlib
+import sys
 from pwinput import pwinput
 from utils.input_validation import password_validation,username_validator
 from utils.config import Config

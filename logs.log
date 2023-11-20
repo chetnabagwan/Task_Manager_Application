@@ -98,3 +98,26 @@
 17-09-2023 14:09:49 INFO     [manager_controllers.py:112] Manager:8839 is updating status of assigned tasks
 17-17-2023 14:17:18 INFO     [main.py:19] Application started
 17-17-2023 14:17:27 INFO     [manager_controllers.py:112] Manager:8839 is updating status of assigned tasks
+17-08-2023 18:08:57 INFO     [main.py:19] Application started
+17-09-2023 18:09:09 INFO     [manager_controllers.py:111] Manager:8839 is updating status of assigned tasks
+17-09-2023 18:09:55 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
+17-09-2023 18:09:55 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+17-10-2023 18:10:39 INFO     [manager_controllers.py:84] Manager:8839 has given invalid duedate
+20-55-2023 09:55:18 INFO     [main.py:19] Application started
+20-58-2023 09:58:11 INFO     [main.py:19] Application started
+20-59-2023 09:59:59 INFO     [main.py:19] Application started
+20-08-2023 10:08:25 INFO     [main.py:19] Application started
+20-19-2023 10:19:12 INFO     [main.py:19] Application started
+20-20-2023 10:20:54 INFO     [main.py:19] Application started
+20-36-2023 10:36:04 INFO     [main.py:19] Application started
+20-36-2023 10:36:19 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
+20-36-2023 10:36:19 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+20-40-2023 10:40:05 INFO     [main.py:19] Application started
+20-40-2023 10:40:13 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
+20-40-2023 10:40:13 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+20-41-2023 10:41:03 INFO     [main.py:19] Application started
+20-41-2023 10:41:10 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
+20-41-2023 10:41:10 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+20-41-2023 10:41:49 INFO     [main.py:19] Application started
+20-41-2023 10:41:55 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
+20-41-2023 10:41:55 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users

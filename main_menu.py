@@ -1,3 +1,4 @@
+import time
 import sys
 import logging
 import functools
@@ -18,8 +19,13 @@ class MainMenu:
         print('\n')
         while ch != 'q':
             if ch == Config.ONE:
-                user_id,role=Authentication.login()
-                break
+                x=Authentication.login()
+                if x!=None:
+                    user_id,role = x
+                    break
+                else:
+                    print(Config.ATTEMPTS_EXHAUSTED)
+                    time.sleep(10)
             elif ch == Config.TWO:
                 Authentication.signUp()
                 a = input(Config.ASK_FOR_LOGIN)   
@@ -33,11 +39,11 @@ class MainMenu:
                 sys.exit()
             else:
                 print(Config.WRONG_INPUT_ENTERED_MESSAGE)
+            print(Config.LOGIN_SIGNUP_MENU)
             ch = input(Config.ENTER_YOUR_CHOICE)
 
-            
         welcomemsg_role(role, user_id)
-
+      
 
 #decorator
 def user_has_permission(func):

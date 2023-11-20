@@ -76,10 +76,12 @@ class Manager:
             else:
                 break
 
-        date_created = datetime.now().strftime("%d-%m-%Y")
+        d = datetime.now()
+        today_date = datetime.strptime((datetime.strftime(d,"%d-%m-%Y")),"%d-%m-%Y")
         while True:
-            due_date= input(Config.ENTER_DATE_IN_FORMAT)
-            if due_date < date_created:
+            d1= input(Config.ENTER_DATE_IN_FORMAT)
+            due_date = datetime.strptime(str(d1),"%d-%m-%Y")
+            if due_date < today_date:
                 print(Config.INVALID_DUE_DATE)
                 logger.info(f'Manager:{self.user_id} has given invalid duedate')
             else :

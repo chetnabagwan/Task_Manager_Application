@@ -37,9 +37,6 @@ class Config:
             cls.ENTER_ROLE = data['ENTER_ROLE']
             cls.WELCOME_MANAGER_MESSAGE = data['WELCOME_MANAGER_MESSAGE']
             cls.WELCOME_USER_MESSAGE : ['Welcome User']
-            cls.ENTER_DEFAULT_PASSWORD = data['ENTER_DEFAULT_PASSWORD']
-            cls.ENTER_NEW_PASSWORD = data['ENTER_NEW_PASSWORD']
-            cls.CONFIRM_PASSWORD = data['CONFIRM_PASSWORD'] 
             cls.PRINT_LOGIN = data['PRINT_LOGIN']
             cls.LOGIN_FAILED = data['LOGIN_FAILED']
             cls.LOGIN_SIGNUP_MENU = data['LOGIN_SIGNUP_MENU']
@@ -81,7 +78,7 @@ class Config:
             cls.INVALID_USERNAME = data['INVALID_USERNAME']
             cls.INVALID_INPUT = data['INVALID_INPUT']
             cls.TASKID_NOT_FOUND = data['TASKID_NOT_FOUND']
-
+            cls.ATTEMPTS_EXHAUSTED = data['ATTEMPTS_EXHAUSTED']
 
 
 

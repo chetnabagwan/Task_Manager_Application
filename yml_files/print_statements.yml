@@ -23,15 +23,9 @@ WELCOME_MANAGER_MESSAGE : Welcome Manager!
 
 WELCOME_USER_MESSAGE : Welcome User!
 
-ENTER_DEFAULT_PASSWORD : 'Enter your default password : '
+PRINT_LOGIN : "\nLogin into the system. You have  3 attempts!\n"
 
-ENTER_NEW_PASSWORD : 'Enter new password : '
-
-CONFIRM_PASSWORD : 'Enter new password to confirm : '
-
-PRINT_LOGIN : "Login into the system. You have  3 attempts!"
-
-LOGIN_FAILED : Login failed!! Try again. Total attempts left
+LOGIN_FAILED : "\nLogin failed!! Try again. Total attempts left\n"
 
 NO_TASKS_FOUND : "No tasks found!"
 
@@ -84,6 +78,8 @@ ENTER_USER_ID : "Enter user id : "
 USERS_AVAILABLE : "\nUsers available to assign tasks: \n"
 
 WHICH_TASK : "Which task you want to update : "
+
+ATTEMPTS_EXHAUSTED : "\nAttempts Exhausted! Wait.....\n "
 
 STATUS : |
   Enter :
