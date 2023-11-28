@@ -16,6 +16,9 @@ class Manager:
         
 
     def manager_menu(self):
+
+        """This method displays choices to manager,operations he/she can perform."""
+
         user_input = input(Config.ENTER_YOUR_CHOICE)
         while True:
             while user_input != 'q':
@@ -43,12 +46,18 @@ class Manager:
             print(Config.THANKYOU)
   
     def view_all_users(self):
+
+        """This method displays all users present in the database"""
+
         logger.info(f'Manager:{self.user_id} is viewing all users')
         users = display_data(Config.QUERY_TO_VIEW_ALL_USERS)
         HEADERS = ["USER ID","USERNAME"]
         print(tabulate(users,headers=HEADERS,tablefmt='rounded_outline'))
 
     def assign_tasks_to_user(self):
+
+        """This method assigns tasks to a selected user."""
+
         logger.info(f'Manager:{self.user_id} is assigning tasks to users.')
         print(Config.USERS_AVAILABLE)
         self.view_all_users()
@@ -112,6 +121,9 @@ class Manager:
             print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
 
     def update_status_of_assigned_task(self):
+
+        """Updates status of a selected task. """
+
         logger.info(f'Manager:{self.user_id} is updating status of assigned tasks')
         data = fetch_data(Config.VIEW_STATUS_OF_MY_ASSIGNED_TASKS,(self.user_id,))
         if len(data) == 0:

@@ -7,7 +7,6 @@ from utils.config import Config
 from manager.manager_controllers import Manager
 from users.user_controllers import User
 
-
 logger = logging.getLogger('main.main_menu')
 
 class MainMenu:

@@ -1,9 +1,7 @@
 import yaml
 
-
 FPATH = 'src\\yml_files\\prompts.yml'
 FPATH_PRINT_STATEMENTS = 'src\\yml_files\\print_statements.yml'
-FPATH_LOGGING_STATEMENTS = 'src\\yml_files\\logging_statements.yml'
 F_PATH_MANAGER_QUERIES = 'src\\db\\queries\\manager_queries.yml'
 F_PATH_USER_QUERIES = 'src\\db\\queries\\user_queries.yml'
 
@@ -93,6 +91,7 @@ class Config:
     DELETE_MY_TASKS =None
     VIEW_TASKS_TO_DELETE =None
 
+
     @classmethod
     def load(cls):
         with open(FPATH, 'r') as f:
@@ -104,9 +103,7 @@ class Config:
             cls.ATTEMPTS = data['ATTEMPTS']
             cls.PASSWORD_REQUIREMENTS = data['PASSWORD_REQUIREMENTS']
             cls.MANAGER = data['MANAGER']
-
-            
-            
+  
           
     @classmethod
     def load_print_statements(cls):
@@ -184,6 +181,7 @@ class Config:
             cls.UPDATE_STATUS_OF_MY_ASSIGNED_TASKS = data['UPDATE_STATUS_OF_MY_ASSIGNED_TASKS']
             cls.QUERY_TO_FETCH_ALL_TASK_IDS = data['QUERY_TO_FETCH_ALL_TASK_IDS']
 
+
     @classmethod
     def loadUserQueries(cls):
         with open(F_PATH_USER_QUERIES,'r') as f:
@@ -197,6 +195,7 @@ class Config:
             cls.DELETE_MY_TASKS = data['DELETE_MY_TASKS']
             cls.VIEW_TASKS_TO_DELETE = data['VIEW_TASKS_TO_DELETE']
             
+
     @classmethod
     def loader(cls,func):
         def wrapper_func():
@@ -205,6 +204,5 @@ class Config:
             Config.loadUserQueries()
             Config.load_print_statements()
             func()      
-
         return wrapper_func
     

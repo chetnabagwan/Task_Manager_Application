@@ -41,5 +41,5 @@ ATTEMPTS : 3
 
 MANAGER : "manager"
 
-PASSWORD_REQUIREMENTS : "A strong password should have at least one number,one uppercase and lowercase character,at least one special symbol and 6 to 20 characters long."
+PASSWORD_REQUIREMENTS : "A strong password should have at least one number, one uppercase character, one lowercase character,at least one special symbol and 6 to 20 characters long."
 

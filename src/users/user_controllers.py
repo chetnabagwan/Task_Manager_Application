@@ -16,6 +16,9 @@ class User:
         self.user_id=user_id
     
     def user_menu(self):
+
+        """Displays user prompt and user can make choice accordingly"""
+
         user_input = input(Config.ENTER_YOUR_CHOICE)
         while user_input != 'q':
             match user_input:
@@ -40,6 +43,9 @@ class User:
         print(Config.THANKYOU)
            
     def create_new_tasks(self): 
+
+        """This method creates new task for user"""
+
         logger.info(f'User:{self.user_id} is creating new tasks.')
         task_id = int(shortuuid.ShortUUID('123456789').random(length=4))
         while True:
@@ -64,8 +70,6 @@ class User:
         today_date = date.strftime("%d-%m-%Y")
         while True:
             d1= input(Config.ENTER_DATE_IN_FORMAT)
-            # if len(d1) < '8':
-            #     raise ValueError
             d_date = datetime.strptime(str(d1),"%d-%m-%Y")
             due_date = d_date.strftime("%d-%m-%Y")
             if due_date < today_date:
@@ -89,6 +93,9 @@ class User:
         print(Config.TASK_ADDED_SUCCESSFULLY)
 
     def view_my_tasks(self):
+
+        """This method allows a user to view his/her tasks"""
+
         logger.info(f'User:{self.user_id} is viewing tasks.')
         data=fetch_data(Config.VIEW_TASKS,(self.user_id,))
         if len(data) == 0 :
@@ -99,6 +106,9 @@ class User:
             print(tabulate(data,headers=HEADERS,tablefmt='rounded_outline'))
 
     def update_my_tasks(self):
+
+        """This method helps user to update his/her tasks. User can update both status and duedate of a task"""
+        
         logger.info(f'User:{self.user_id} is updating tasks.')
         self.view_my_tasks()
         task_name = input(Config.TASK_NAME_TO_UPDATE)
@@ -125,6 +135,9 @@ class User:
             print(Config.TASK_STATUS_UPDATED)
 
     def delete_my_tasks(self):
+
+        """This method deletes a selected task."""
+        
         logger.info(f'User:{self.user_id} is trying to delete tasks.')
         data=fetch_data(Config.VIEW_TASKS_TO_DELETE,(self.user_id,))
         if len(data) == 0 :
@@ -133,8 +146,6 @@ class User:
             print(Config.TASKS_THAT_CAN_BE_DELETED)
             HEADERS = ["TASK ID","USER ID","TASK NAME" ,"TASK DESCRIPTION","DATE OF CREATION","DUE DATE","IS COMPLETED","CATEGORY","ASSIGNED BY"]
             print(tabulate(data,headers=HEADERS,tablefmt='rounded_outline'))
-        
-            print("\n")
             task_id = input(Config.WHICH_TASK_TO_DELETE)
             update_data(Config.DELETE_MY_TASKS,(self.user_id,task_id))
             print(Config.TASK_DELETED_SUCCESSFULLY)

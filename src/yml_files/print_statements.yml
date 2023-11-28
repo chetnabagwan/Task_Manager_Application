@@ -71,7 +71,7 @@ TASK_NAME_TO_UPDATE : "Name of the task you want to update : "
 
 TASKS_THAT_CAN_BE_DELETED : "\nYou can delete only these tasks which are assigned by yourself : \n"
 
-WHICH_TASK_TO_DELETE : "Which task you want to delete : "
+WHICH_TASK_TO_DELETE : "\nWhich task you want to delete : "
 
 ENTER_USER_ID : "Enter user id : "
 
