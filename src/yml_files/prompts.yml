@@ -41,5 +41,11 @@ ATTEMPTS : 3
 
 MANAGER : "manager"
 
+GEN_REGEX : r"^([A-Za-z0-9].\s*)"
+
+PWD_REGEX : "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!#%*?&]{6,20}$"
+
+ID_REGEX : r"^([0-9]{4}\s)"
+
 PASSWORD_REQUIREMENTS : "A strong password should have at least one number, one uppercase character, one lowercase character,at least one special symbol and 6 to 20 characters long."
 

@@ -23,5 +23,4 @@ def main():
     MainMenu.start()
     logger.info('Application started')
     
-    
 main()

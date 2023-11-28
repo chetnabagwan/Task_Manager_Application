@@ -1,29 +1,109 @@
 """This file contains the input validations functions."""
 
 import re
+from .config import Config
+from datetime import datetime
+import logging
 
-def password_validation(password):
+logger = logging.getLogger('Validations')
 
-    """Validates the password entered whether it meets the password requirements or not."""
+class InputValidations:
 
-    reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!#%*?&]{6,20}$"
-    pat = re.compile(reg)
-    answer = re.search(pat,password)
+    @staticmethod
+    def password_validation(password):
+
+        """Validates the password entered whether it meets the password requirements or not."""
+
+        pat = re.compile(Config.PWD_REGEX)
+        answer = re.search(pat,password)
+        
+        if answer is not None:
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def gen_validator(input):
+        
+        """Validates the input entered."""
+
+        ans = re.fullmatch(Config.GEN_REGEX,input)
+        if ans is not None:
+            return True
+        else:
+            return False
+
+    @staticmethod  
+    def task_name_validator(self):
+        while True:
+            tname = input(Config.TASK_TITLE).lower().strip() 
+            if self.gen_validator(tname) is False:
+                print(Config.INVALID_INPUT)
+            return tname
+
+    @staticmethod
+    def task_desc_validator(self):
+        while True:
+            tdesc = input(Config.TASK_DESCRIPTION).lower().strip() 
+            if self.gen_validator(tdesc) is False:
+                print(Config.INVALID_INPUT)
+            return tdesc
+
     
-    if answer is not None:
-        return True
-    else:
-        return False
-  
-    
-def username_validator(name):
-    
-    """Validates the input entered."""
+    @staticmethod
+    def date_validator(user_id,today_date):
+        while True:
+            d1= input(Config.ENTER_DATE_IN_FORMAT)
+            d_date = datetime.strptime(str(d1),"%d-%m-%Y")
+            due_date = d_date.strftime("%d-%m-%Y")
+            if due_date < today_date:
+                print(Config.INVALID_DUE_DATE)
+                logger.info(f'Manager:{user_id} has given invalid duedate')
+            return due_date
+        
+    @staticmethod
+    def task_category_validator():
+        while True:
+            print(Config.TASKS_CATEGORY_PROMPT)
+            cat_choice=input(Config.ENTER_YOUR_CHOICE)
+            if cat_choice == Config.ONE :
+                return Config.TODAY
+            elif cat_choice == Config.TWO :
+                return Config.IMPORTANT
+            elif cat_choice == Config.THREE:
+                return Config.FOR_LATER
+            else :
+                print(Config.WRONG_INPUT_ENTERED_MESSAGE)
 
-    reg = "^[a-zA-Z]+(?:\\s[a-zA-Z]+)*$"
-    ans = re.fullmatch(reg,name)
-    if ans is not None:
-        return True
-    else:
-        return False
+    @staticmethod
+    def userid_validator():
+        while True:
+            id = input(Config.ENTER_USER_ID).strip() 
+            if re.match(Config.ID_REGEX,id):
+                return id
+            print(Config.INVALID_INPUT)
 
+    @staticmethod
+    def taskid_validator():
+        while True:
+            id = input(Config.ENTER_TASK_ID).strip() 
+            if re.match(Config.ID_REGEX,id):
+                return id
+            print(Config.INVALID_INPUT)
+
+
+    @staticmethod
+    def task_status_validator():
+        while True:
+            s = input(Config.STATUS)
+            if s == Config.STR_ZERO:
+                return Config.Reassigned
+            elif s == Config.ONE:
+                return Config.Completed
+            else:
+                print(Config.INVALID_INPUT)   
+
+    
+
+
+    

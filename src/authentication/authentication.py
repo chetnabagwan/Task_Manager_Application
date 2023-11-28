@@ -2,7 +2,7 @@ import hashlib
 import sys
 import shortuuid
 from pwinput import pwinput
-from utils.input_validation import password_validation,username_validator
+from utils.input_validation import InputValidations
 from utils.config import Config
 from db.database_functions import add_data,fetch_user
 

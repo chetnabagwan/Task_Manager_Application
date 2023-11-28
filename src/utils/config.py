@@ -103,6 +103,9 @@ class Config:
             cls.ATTEMPTS = data['ATTEMPTS']
             cls.PASSWORD_REQUIREMENTS = data['PASSWORD_REQUIREMENTS']
             cls.MANAGER = data['MANAGER']
+            cls.GEN_REGEX = data['GEN_REGEX']
+            cls.PWD_REGEX = data['PWD_REGEX']
+            cls.ID_REGEX = data['ID_REGEX']
   
           
     @classmethod
@@ -157,6 +160,7 @@ class Config:
             cls.FOR_LATER = data['FOR_LATER']
             cls.THREE = data['THREE']
             cls.STR_THREE = data['STR_THREE']
+            cls.STR_ZERO = data['STR_ZERO']
             cls.INVALID_USERNAME = data['INVALID_USERNAME']
             cls.INVALID_INPUT = data['INVALID_INPUT']
             cls.TASKID_NOT_FOUND = data['TASKID_NOT_FOUND']

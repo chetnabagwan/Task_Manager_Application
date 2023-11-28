@@ -4,7 +4,7 @@ import sys
 import os
 from datetime import datetime
 from tabulate import tabulate
-from utils.input_validation import username_validator
+from utils.input_validation import InputValidations
 from db.database_functions import add_data,update_data,fetch_data,display_data
 from utils.config import Config
 
@@ -54,6 +54,7 @@ class Manager:
         HEADERS = ["USER ID","USERNAME"]
         print(tabulate(users,headers=HEADERS,tablefmt='rounded_outline'))
 
+
     def assign_tasks_to_user(self):
 
         """This method assigns tasks to a selected user."""
@@ -62,56 +63,21 @@ class Manager:
         print(Config.USERS_AVAILABLE)
         self.view_all_users()
         task_id = int(shortuuid.ShortUUID('123456789').random(length=4))
-        while True:
-            user = input(Config.ENTER_USER_ID).strip() 
-            if len(user) < 4 and len(user) >4 :
-                print(Config.INVALID_INPUT)
-            else:
-                break
-        while True:
-            task_name = input(Config.TASK_TITLE).lower().strip() 
-            if username_validator(task_name) is False  :
-                print(Config.INVALID_INPUT)
-            elif len(task_name) == 0:
-                print(Config.INVALID_INPUT)
-            else:
-                break
-        while True:
-            task_desc = input(Config.TASK_DESCRIPTION).lower().strip() 
-            if username_validator(task_desc) is False :
-                print(Config.INVALID_INPUT)
-            elif len(task_desc) == 0:
-                print(Config.INVALID_INPUT)
-            else:
-                break
-
-        d = datetime.now()
-        date = datetime.strptime((datetime.strftime(d,"%d-%m-%Y")),"%d-%m-%Y")
-        today_date = date.strftime("%d-%m-%Y")
-        while True:
-            d1= input(Config.ENTER_DATE_IN_FORMAT)
-            d_date = datetime.strptime(str(d1),"%d-%m-%Y")
-            due_date = d_date.strftime("%d-%m-%Y")
-            if due_date < today_date:
-                print(Config.INVALID_DUE_DATE)
-                logger.info(f'Manager:{self.user_id} has given invalid duedate')
-            else :
-                break
-
-        print(Config.TASKS_CATEGORY_PROMPT)
-        cat_choice=input(Config.ENTER_YOUR_CHOICE)
-        if cat_choice == Config.ONE:
-            category = Config.TODAY
-        elif cat_choice == Config.TWO :
-            category = Config.IMPORTANT
-        else :
-            category = Config.FOR_LATER
-        
+        user = InputValidations.userid_validator()
+        task_name = InputValidations.task_name_validator()
+        task_desc = InputValidations.task_desc_validator()
+        today_date = datetime.strptime((datetime.strftime(datetime.now(),"%d-%m-%Y")),"%d-%m-%Y").strftime("%d-%m-%Y")
+        due_date = InputValidations.date_validator(self.user_id,today_date)
+        category = InputValidations.task_category_validator()
         add_data(Config.INSERT_INTO_TASKS_TABLE_BY_MANAGER,(task_id,user,task_name,task_desc,today_date,due_date,category,self.user_id))
         add_data(Config.INSERT_INTO_ASSIGNED_TASKS_TABLE,(self.user_id,user,task_id))
         print(Config.TASK_ASSIGNED_SUCCESSFULLY)
 
+
     def view_status_of_assigned_tasks(self):
+
+        """This method shows status of tasks assigned by particular manager. """
+
         logger.info(f'Manager:{self.user_id} is trying to view status of assigned tasks')
         data = fetch_data(Config.VIEW_STATUS_OF_MY_ASSIGNED_TASKS,(self.user_id,))
         if len(data) == 0:
@@ -120,9 +86,10 @@ class Manager:
             HEADERS = ['USER ID',"TASK ID","STATUS" ,"TASK NAME","TASK DESCRIPTION","DATE OF CREATION" ,"DUE DATE"]
             print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
 
+
     def update_status_of_assigned_task(self):
 
-        """Updates status of a selected task. """
+        """Updates status of a selected task."""
 
         logger.info(f'Manager:{self.user_id} is updating status of assigned tasks')
         data = fetch_data(Config.VIEW_STATUS_OF_MY_ASSIGNED_TASKS,(self.user_id,))
@@ -132,27 +99,12 @@ class Manager:
             HEADERS = ['USER ID',"TASK ID","STATUS" ,"TASK NAME","TASK DESCRIPTION","DATE OF CREATION" ,"DUE DATE"]
             print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
             print(Config.WHICH_TASK)
-            task = input(Config.ENTER_TASK_ID).strip()
-            while len(task) == 0 or len(task) > 4:
-                print(Config.INVALID_INPUT)
-                task = input(Config.ENTER_TASK_ID).strip()
-            
+            task = InputValidations.user_or_task_id_validator()
             data = fetch_data(Config.QUERY_TO_FETCH_ALL_TASK_IDS,(task,))
             while len(data) == 0:
                 print(Config.TASKID_NOT_FOUND)
-                task = input(Config.ENTER_TASK_ID).strip()
+                task = InputValidations.taskid_validator()
                 data = fetch_data(Config.QUERY_TO_FETCH_ALL_TASK_IDS,(task,))
-
-            status =""
-            while True:
-                s = input(Config.STATUS)
-                if s == '0':
-                    status = "reassign"
-                    break
-                elif s=='1':
-                    status = "completed"
-                    break
-                else:
-                    print(Config.INVALID_INPUT)    
+            status = InputValidations.task_status_validator() 
             update_data(Config.UPDATE_STATUS_OF_MY_ASSIGNED_TASKS,(status,task))
             print(Config.TASK_STATUS_UPDATED)

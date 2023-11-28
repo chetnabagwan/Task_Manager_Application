@@ -198,3 +198,7 @@
 22-51-2023 23:51:27 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
 22-52-2023 23:52:01 INFO     [user_controllers.py:71] Manager:5129 has given invalid duedate
 22-53-2023 23:53:22 INFO     [user_controllers.py:71] Manager:5129 has given invalid duedate
+28-40-2023 11:40:10 INFO     [main.py:18] Application started
+28-29-2023 13:29:21 INFO     [main.py:18] Application started
+28-39-2023 15:39:12 INFO     [main.py:18] Application started
+28-39-2023 15:39:19 INFO     [main.py:18] Application started
