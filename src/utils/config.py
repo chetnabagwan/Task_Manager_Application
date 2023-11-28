@@ -1,16 +1,98 @@
 import yaml
 
 
-FPATH = 'yml_files\\prompts.yml'
-FPATH_PRINT_STATEMENTS = 'yml_files\\print_statements.yml'
-FPATH_LOGGING_STATEMENTS = 'yml_files\\logging_statements.yml'
-F_PATH_MANAGER_QUERIES = 'db\\queries\\manager_queries.yml'
-F_PATH_USER_QUERIES = 'db\\queries\\user_queries.yml'
+FPATH = 'src\\yml_files\\prompts.yml'
+FPATH_PRINT_STATEMENTS = 'src\\yml_files\\print_statements.yml'
+FPATH_LOGGING_STATEMENTS = 'src\\yml_files\\logging_statements.yml'
+F_PATH_MANAGER_QUERIES = 'src\\db\\queries\\manager_queries.yml'
+F_PATH_USER_QUERIES = 'src\\db\\queries\\user_queries.yml'
 
 class Config:
-    """
-    Maintains all the config variables
-    """
+    
+    #Maintains all the config variables
+    MANAGER_PROMPT = None
+    USER_PROMPT = None
+    MANAGER_PROMPT_WLCM = None
+    PASSWORD_REQUIREMENTS = None
+    MANAGER = None
+    ATTEMPTS = None
+    USER_PROMPT_WLCM = None
+    WELCOME_MESSAGE = None
+    WRONG_INPUT_ENTERED_MESSAGE = None
+    ROW_NOT_EXISTS_MESSAGE =None
+    PRINT_USERNAME = None
+    PRINT_PASSWORD = None
+    ENTER_STRONG_PASSWORD = None
+    ENTER_ROLE = None
+    WELCOME_MANAGER_MESSAGE = None
+    WELCOME_USER_MESSAGE = None
+    PRINT_LOGIN = None
+    LOGIN_FAILED = None
+    LOGIN_SIGNUP_MENU = None
+    NO_DATA_FOUND = None
+    YOUR_TASKS_ARE = None
+    NO_TASKS_FOUND_TO_BE_DELETED = None
+    TASK_ADDED_SUCCESSFULLY = None
+    TASK_DELETED_SUCCESSFULLY = None
+    TASK_DUE_DATE_UPDATED = None
+    TASK_STATUS_UPDATED = None
+    ENTER_YOUR_CHOICE = None
+    ASK_FOR_LOGIN = None
+    INVALID_CREDENTIALS = None
+    LOGIN_SUCCESSFUL = None
+    SIGNUP_SUCCESSFUL = None
+    THANKYOU = None 
+    TASK_ASSIGNED_SUCCESSFULLY = None
+    INVALID_DUE_DATE = None
+    NEXT = None
+    ENTER_DATE_IN_FORMAT = None
+    TASK_TITLE = None
+    TASK_DESCRIPTION = None
+    TASK_NAME_TO_UPDATE = None
+    TASKS_THAT_CAN_BE_DELETED = None
+    WHICH_TASK_TO_DELETE = None
+    ENTER_USER_ID = None
+    ENTER_TASK_ID = None
+    USERS_AVAILABLE = None
+    WHICH_TASK = None
+    STATUS = None
+    ONE = None
+    TWO = None
+    UPPER_Y =None
+    LOWER_Y = None
+    TODAY = None
+    IMPORTANT = None
+    FOR_LATER = None
+    THREE = None
+    STR_THREE = None
+    INVALID_USERNAME = None
+    INVALID_INPUT = None
+    TASKID_NOT_FOUND = None
+    ATTEMPTS_EXHAUSTED = None
+    DB_CONNECTION_ERROR = None
+    
+    QUERY_FOR_CREATE_AUTH_TABLE = None
+    QUERY_FOR_CREATE_TASKS_TABLE= None
+    QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE = None
+    QUERY_TO_ENABLE_FOREIGN_KEY = None
+    QUERY_TO_ADD_IN_AUTH_TABLE = None
+    QUERY_TO_VERIFY_LOGIN = None
+    QUERY_TO_VIEW_ALL_USERS = None
+    INSERT_INTO_TASKS_TABLE_BY_MANAGER = None
+    INSERT_INTO_ASSIGNED_TASKS_TABLE = None
+    VIEW_STATUS_OF_MY_ASSIGNED_TASKS  = None
+    UPDATE_STATUS_OF_MY_ASSIGNED_TASKS = None
+    QUERY_TO_FETCH_ALL_TASK_IDS = None
+
+    INSERT_INTO_TASKS_TABLE = None
+    TASKS_CATEGORY_PROMPT = None
+    UPDATE_TASKS_OPTIONS = None
+    UPDATE_DUE_DATE =None
+    UPDATE_TASK_STATUS = None
+    VIEW_TASKS = None
+    DELETE_MY_TASKS =None
+    VIEW_TASKS_TO_DELETE =None
+
     @classmethod
     def load(cls):
         with open(FPATH, 'r') as f:
@@ -22,6 +104,8 @@ class Config:
             cls.ATTEMPTS = data['ATTEMPTS']
             cls.PASSWORD_REQUIREMENTS = data['PASSWORD_REQUIREMENTS']
             cls.MANAGER = data['MANAGER']
+
+            
             
           
     @classmethod
@@ -65,6 +149,7 @@ class Config:
             cls.ENTER_USER_ID = data['ENTER_USER_ID']
             cls.USERS_AVAILABLE = data['USERS_AVAILABLE']
             cls.WHICH_TASK = data['WHICH_TASK']
+            cls.ENTER_TASK_ID = data['ENTER_TASK_ID']
             cls.STATUS = data['STATUS']
             cls.ONE = data['ONE']
             cls.TWO = data['TWO']
@@ -80,7 +165,6 @@ class Config:
             cls.TASKID_NOT_FOUND = data['TASKID_NOT_FOUND']
             cls.ATTEMPTS_EXHAUSTED = data['ATTEMPTS_EXHAUSTED']
             cls.DB_CONNECTION_ERROR = data['DB_CONNECTION_ERROR']
-
 
 
     @classmethod

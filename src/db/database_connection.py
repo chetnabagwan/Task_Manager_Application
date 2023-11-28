@@ -1,4 +1,3 @@
-import yaml
 import logging
 import sqlite3
 from utils.config import Config

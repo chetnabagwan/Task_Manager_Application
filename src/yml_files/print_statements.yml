@@ -31,7 +31,7 @@ NO_TASKS_FOUND : "No tasks found!"
 
 NO_TASKS_FOUND_TO_BE_DELETED : "You haven't assigned any tasks to yourself yet."
 
-YOUR_TASKS_ARE : "Your tasks are : "
+YOUR_TASKS_ARE : "\nYour tasks are : "
 
 NO_DATA_FOUND : No tasks found!
 
@@ -57,7 +57,7 @@ THANKYOU : "\nThankyou!\n"
 
 TASK_ASSIGNED_SUCCESSFULLY : "Task assigned successfully!"
 
-INVALID_DUE_DATE : "\nInvalid due-date!"
+INVALID_DUE_DATE : "\nInvalid due-date!\n"
 
 NEXT : "\nWhat do you want to do next?"
 
@@ -77,8 +77,10 @@ ENTER_USER_ID : "Enter user id : "
 
 USERS_AVAILABLE : "\nUsers available to assign tasks: \n"
 
-WHICH_TASK : "Which task you want to update : "
+WHICH_TASK : "\nWhich task you want to update?\n"
 
+ENTER_TASK_ID : "Enter task id : " 
+ 
 ATTEMPTS_EXHAUSTED : "\nAttempts Exhausted! Wait.....\n "
 
 DB_CONNECTION_ERROR : "\nDatabase Connection error\n"

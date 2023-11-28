@@ -130,3 +130,71 @@
 20-56-2023 11:56:17 INFO     [main.py:19] Application started
 20-56-2023 11:56:48 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
 20-56-2023 11:56:48 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+21-15-2023 15:15:34 INFO     [main.py:18] Application started
+21-47-2023 15:47:27 INFO     [main.py:18] Application started
+21-49-2023 15:49:11 INFO     [main.py:18] Application started
+21-49-2023 15:49:41 INFO     [main.py:18] Application started
+22-08-2023 16:08:18 INFO     [main.py:18] Application started
+22-09-2023 16:09:16 INFO     [user_controllers.py:101] User:9768 is viewing tasks.
+22-09-2023 16:09:20 INFO     [user_controllers.py:43] User:9768 is creating new tasks.
+22-11-2023 16:11:27 INFO     [user_controllers.py:101] User:9768 is viewing tasks.
+22-11-2023 16:11:49 INFO     [user_controllers.py:88] User:9768 is updating tasks.
+22-12-2023 16:12:19 INFO     [user_controllers.py:101] User:9768 is viewing tasks.
+22-13-2023 16:13:55 INFO     [user_controllers.py:112] User:9768 is trying to delete tasks.
+22-14-2023 16:14:23 INFO     [user_controllers.py:101] User:9768 is viewing tasks.
+22-14-2023 16:14:46 INFO     [user_controllers.py:112] User:9768 is trying to delete tasks.
+22-14-2023 16:14:52 INFO     [user_controllers.py:101] User:9768 is viewing tasks.
+22-15-2023 16:15:24 INFO     [main.py:18] Application started
+22-15-2023 16:15:47 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+22-15-2023 16:15:50 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
+22-15-2023 16:15:50 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+22-16-2023 16:16:43 INFO     [manager_controllers.py:104] Manager:8839 is trying to view status of assigned tasks
+22-16-2023 16:16:57 INFO     [manager_controllers.py:113] Manager:8839 is updating status of assigned tasks
+22-17-2023 16:17:42 INFO     [manager_controllers.py:104] Manager:8839 is trying to view status of assigned tasks
+22-45-2023 22:45:52 INFO     [main.py:18] Application started
+22-46-2023 22:46:10 INFO     [manager_controllers.py:113] Manager:8839 is updating status of assigned tasks
+22-47-2023 22:47:29 INFO     [manager_controllers.py:104] Manager:8839 is trying to view status of assigned tasks
+22-53-2023 22:53:30 INFO     [main.py:18] Application started
+22-53-2023 22:53:37 INFO     [manager_controllers.py:113] Manager:8839 is updating status of assigned tasks
+22-59-2023 22:59:00 INFO     [main.py:18] Application started
+22-59-2023 22:59:08 INFO     [manager_controllers.py:52] Manager:8839 is assigning tasks to users.
+22-59-2023 22:59:08 INFO     [manager_controllers.py:46] Manager:8839 is viewing all users
+22-00-2023 23:00:10 INFO     [manager_controllers.py:106] Manager:8839 is trying to view status of assigned tasks
+22-00-2023 23:00:48 INFO     [user_controllers.py:101] User:5129 is viewing tasks.
+22-07-2023 23:07:49 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-08-2023 23:08:28 INFO     [main.py:18] Application started
+22-09-2023 23:09:32 INFO     [main.py:18] Application started
+22-09-2023 23:09:40 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-10-2023 23:10:05 INFO     [main.py:18] Application started
+22-10-2023 23:10:17 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-10-2023 23:10:49 INFO     [main.py:18] Application started
+22-10-2023 23:10:58 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-11-2023 23:11:14 INFO     [main.py:18] Application started
+22-11-2023 23:11:21 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-13-2023 23:13:29 INFO     [main.py:18] Application started
+22-13-2023 23:13:35 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-13-2023 23:13:59 INFO     [main.py:18] Application started
+22-15-2023 23:15:24 INFO     [main.py:18] Application started
+22-15-2023 23:15:33 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-22-2023 23:22:38 INFO     [main.py:18] Application started
+22-22-2023 23:22:47 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-24-2023 23:24:13 INFO     [main.py:18] Application started
+22-24-2023 23:24:20 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-26-2023 23:26:41 INFO     [main.py:18] Application started
+22-27-2023 23:27:28 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-28-2023 23:28:05 INFO     [main.py:18] Application started
+22-29-2023 23:29:11 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-32-2023 23:32:26 INFO     [main.py:18] Application started
+22-32-2023 23:32:36 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-34-2023 23:34:19 INFO     [main.py:18] Application started
+22-34-2023 23:34:29 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-37-2023 23:37:40 INFO     [main.py:18] Application started
+22-37-2023 23:37:54 INFO     [user_controllers.py:88] User:5129 is updating tasks.
+22-39-2023 23:39:57 INFO     [main.py:18] Application started
+22-40-2023 23:40:17 INFO     [main.py:18] Application started
+22-40-2023 23:40:34 INFO     [user_controllers.py:99] User:5129 is updating tasks.
+22-40-2023 23:40:34 INFO     [user_controllers.py:88] User:5129 is viewing tasks.
+22-50-2023 23:50:45 INFO     [main.py:18] Application started
+22-51-2023 23:51:27 INFO     [user_controllers.py:43] User:5129 is creating new tasks.
+22-52-2023 23:52:01 INFO     [user_controllers.py:71] Manager:5129 has given invalid duedate
+22-53-2023 23:53:22 INFO     [user_controllers.py:71] Manager:5129 has given invalid duedate

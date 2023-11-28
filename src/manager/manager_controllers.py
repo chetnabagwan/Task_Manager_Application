@@ -3,10 +3,10 @@ import logging
 import sys
 import os
 from datetime import datetime
+from tabulate import tabulate
 from utils.input_validation import username_validator
 from db.database_functions import add_data,update_data,fetch_data,display_data
 from utils.config import Config
-from tabulate import tabulate
 
 logger = logging.getLogger('main.manager_controllers')
 
@@ -77,10 +77,12 @@ class Manager:
                 break
 
         d = datetime.now()
-        today_date = datetime.strptime((datetime.strftime(d,"%d-%m-%Y")),"%d-%m-%Y")
+        date = datetime.strptime((datetime.strftime(d,"%d-%m-%Y")),"%d-%m-%Y")
+        today_date = date.strftime("%d-%m-%Y")
         while True:
             d1= input(Config.ENTER_DATE_IN_FORMAT)
-            due_date = datetime.strptime(str(d1),"%d-%m-%Y")
+            d_date = datetime.strptime(str(d1),"%d-%m-%Y")
+            due_date = d_date.strftime("%d-%m-%Y")
             if due_date < today_date:
                 print(Config.INVALID_DUE_DATE)
                 logger.info(f'Manager:{self.user_id} has given invalid duedate')
@@ -117,30 +119,28 @@ class Manager:
         else:
             HEADERS = ['USER ID',"TASK ID","STATUS" ,"TASK NAME","TASK DESCRIPTION","DATE OF CREATION" ,"DUE DATE"]
             print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
-            
-            task = input(Config.WHICH_TASK).strip()
+            print(Config.WHICH_TASK)
+            task = input(Config.ENTER_TASK_ID).strip()
             while len(task) == 0 or len(task) > 4:
                 print(Config.INVALID_INPUT)
-                task = input(Config.WHICH_TASK).strip()
+                task = input(Config.ENTER_TASK_ID).strip()
             
             data = fetch_data(Config.QUERY_TO_FETCH_ALL_TASK_IDS,(task,))
             while len(data) == 0:
                 print(Config.TASKID_NOT_FOUND)
-                task = input(Config.WHICH_TASK).strip()
+                task = input(Config.ENTER_TASK_ID).strip()
                 data = fetch_data(Config.QUERY_TO_FETCH_ALL_TASK_IDS,(task,))
 
             status =""
             while True:
                 s = input(Config.STATUS)
                 if s == '0':
-                    status = "pending"
+                    status = "reassign"
                     break
                 elif s=='1':
                     status = "completed"
                     break
                 else:
-                    print(Config.INVALID_INPUT)
-                    
-                
+                    print(Config.INVALID_INPUT)    
             update_data(Config.UPDATE_STATUS_OF_MY_ASSIGNED_TASKS,(status,task))
             print(Config.TASK_STATUS_UPDATED)
