@@ -13,7 +13,7 @@ logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d
                     datefmt="%d-%M-%Y %H:%M:%S", level=logging.DEBUG, filename='utils/logs.log')
 logger = logging.getLogger("main")
 
-@Config.loader
+@Config.config_loader
 def main():
     logger.info('Application started')
     create_table(Config.QUERY_FOR_CREATE_AUTH_TABLE)

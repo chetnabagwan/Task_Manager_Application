@@ -201,7 +201,7 @@ class Config:
             
 
     @classmethod
-    def loader(cls,func):
+    def config_loader(cls,func):
         def wrapper_func():
             Config.load()
             Config.loadManagerQueries()

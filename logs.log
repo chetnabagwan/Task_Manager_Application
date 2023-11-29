@@ -202,3 +202,10 @@
 28-29-2023 13:29:21 INFO     [main.py:18] Application started
 28-39-2023 15:39:12 INFO     [main.py:18] Application started
 28-39-2023 15:39:19 INFO     [main.py:18] Application started
+29-50-2023 14:50:41 INFO     [main.py:18] Application started
+29-50-2023 14:50:53 INFO     [manager_controllers.py:62] Manager:8839 is assigning tasks to users.
+29-50-2023 14:50:53 INFO     [manager_controllers.py:52] Manager:8839 is viewing all users
+29-53-2023 14:53:19 INFO     [main.py:18] Application started
+29-53-2023 14:53:46 INFO     [manager_controllers.py:62] Manager:8839 is assigning tasks to users.
+29-53-2023 14:53:46 INFO     [manager_controllers.py:52] Manager:8839 is viewing all users
+29-54-2023 14:54:25 INFO     [manager_controllers.py:81] Manager:8839 is trying to view status of assigned tasks

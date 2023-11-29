@@ -1,5 +1,4 @@
 import hashlib
-import sys
 import shortuuid
 from pwinput import pwinput
 from utils.input_validation import InputValidations
@@ -14,13 +13,12 @@ class Authentication:
     @classmethod
     def login(self):
         print(Config.PRINT_LOGIN)
-        print("\n")
         attempts = Config.ATTEMPTS
 
         while attempts:
             while True:
                 username = input(Config.PRINT_USERNAME).strip() 
-                if username_validator(username) is False:
+                if InputValidations.gen_validator(username) is False:
                     print(Config.INVALID_USERNAME)
                 else:
                     break
@@ -48,13 +46,13 @@ class Authentication:
     def signUp(self):
         while True:
                 username = input(Config.PRINT_USERNAME).strip() 
-                if username_validator(username) is False:
+                if InputValidations.gen_validator(username) is False:
                     print(Config.INVALID_USERNAME)
                 else:
                     break
         while True:
             password = pwinput(prompt=Config.PRINT_PASSWORD)
-            if not password_validation(password):
+            if not InputValidations.password_validation(password):
                 print(Config.ENTER_STRONG_PASSWORD)
                 print(Config.PASSWORD_REQUIREMENTS)
             else:

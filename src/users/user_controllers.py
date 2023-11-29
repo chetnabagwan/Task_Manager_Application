@@ -8,7 +8,6 @@ from utils.input_validation import InputValidations
 from db.database_functions import add_data,update_data,fetch_data
 from utils.config import Config
 
-
 logger = logging.getLogger('main.user_controllers')
 
 class User:

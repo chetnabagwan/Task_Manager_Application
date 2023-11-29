@@ -26,30 +26,29 @@ class InputValidations:
     def gen_validator(input):
         
         """Validates the input entered."""
-
-        ans = re.fullmatch(Config.GEN_REGEX,input)
+        pat = re.compile(Config.GEN_REGEX)
+        ans = re.match(pat,input)
         if ans is not None:
             return True
         else:
             return False
 
     @staticmethod  
-    def task_name_validator(self):
+    def task_name_validator():
         while True:
-            tname = input(Config.TASK_TITLE).lower().strip() 
-            if self.gen_validator(tname) is False:
+            tname = input(Config.TASK_TITLE)
+            if InputValidations.gen_validator(tname) is False:
                 print(Config.INVALID_INPUT)
             return tname
 
     @staticmethod
-    def task_desc_validator(self):
+    def task_desc_validator():
         while True:
-            tdesc = input(Config.TASK_DESCRIPTION).lower().strip() 
-            if self.gen_validator(tdesc) is False:
+            tdesc = input(Config.TASK_DESCRIPTION)
+            if InputValidations.gen_validator(tdesc) is False:
                 print(Config.INVALID_INPUT)
             return tdesc
-
-    
+   
     @staticmethod
     def date_validator(user_id,today_date):
         while True:
@@ -70,7 +69,7 @@ class InputValidations:
                 return Config.TODAY
             elif cat_choice == Config.TWO :
                 return Config.IMPORTANT
-            elif cat_choice == Config.THREE:
+            elif cat_choice == Config.STR_THREE:
                 return Config.FOR_LATER
             else :
                 print(Config.WRONG_INPUT_ENTERED_MESSAGE)
@@ -78,7 +77,7 @@ class InputValidations:
     @staticmethod
     def userid_validator():
         while True:
-            id = input(Config.ENTER_USER_ID).strip() 
+            id = input(Config.ENTER_USER_ID)
             if re.match(Config.ID_REGEX,id):
                 return id
             print(Config.INVALID_INPUT)
@@ -104,6 +103,6 @@ class InputValidations:
                 print(Config.INVALID_INPUT)   
 
     
-
+    
 
     
