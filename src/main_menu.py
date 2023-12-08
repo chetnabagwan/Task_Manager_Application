@@ -2,15 +2,15 @@ import time
 import sys
 import logging
 import functools
-from authentication.authentication import Authentication
-from utils.config import Config
-from manager.manager_controllers import Manager
-from users.user_controllers import User
+from src.authentication.authentication import Authentication
+from src.utils.config import Config
+from src.manager.manager_controllers import Manager
+from src.users.user_controllers import User
 
-logger = logging.getLogger('main.main_menu')
+logger = logging.getLogger('app.main_menu')
 
 class MainMenu:
-    @classmethod   
+    @classmethod 
     def start(cls):
         print("\n")
         print(Config.LOGIN_SIGNUP_MENU)
@@ -19,7 +19,7 @@ class MainMenu:
         while ch != 'q':
             if ch == Config.ONE:
                 x=Authentication.login()
-                if x!=None:
+                if x is not None:
                     user_id,role = x
                     break
                 else:
@@ -27,12 +27,12 @@ class MainMenu:
                     time.sleep(10)
             elif ch == Config.TWO:
                 Authentication.signUp()
-                a = input(Config.ASK_FOR_LOGIN)   
-                print('\n') 
-                if a==Config.UPPER_Y or Config.LOWER_Y:
+                a = input(Config.ASK_FOR_LOGIN)
+                print('\n')
+                if a in (Config.UPPER_Y, Config.LOWER_Y):
                     user_id,role=Authentication.login()
                     break
-                else:
+                elif a in (Config.UPPER_N, Config.LOWER_N):
                     sys.exit()
             elif ch==Config.STR_THREE:
                 sys.exit()
@@ -45,25 +45,24 @@ class MainMenu:
       
 
 #decorator
-def user_has_permission(func):
-        
-        #wrapper function
-        @functools.wraps(func)
-        def check_role(*args):
-            role, user_id = args
-            if role == Config.MANAGER :                                            
-                func(role, user_id)
-                print(Config.MANAGER_PROMPT)
-                a = Manager(user_id)
-                a.manager_menu()
-                MainMenu.start()
-            else :
-                func(role,user_id)
-                print(Config.USER_PROMPT)
-                a = User(user_id)
-                a.user_menu()
-                MainMenu.start()
-        return check_role
+def user_has_permission(func):     
+    #wrapper function
+    @functools.wraps(func)
+    def check_role(*args):
+        role, user_id = args
+        if role == Config.MANAGER :                                            
+            func(role, user_id)
+            print(Config.MANAGER_PROMPT)
+            a = Manager(user_id)
+            a.manager_menu()
+            MainMenu.start()
+        else :
+            func(role,user_id)
+            print(Config.USER_PROMPT)
+            a = User(user_id)
+            a.user_menu()
+            MainMenu.start()
+    return check_role
 
 
 @user_has_permission

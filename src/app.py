@@ -1,7 +1,7 @@
 import logging
-from utils.config import Config
-from main_menu import MainMenu
-from db.database_functions import create_table
+from src.utils.config import Config
+from src.main_menu import MainMenu
+from src.db.database_functions import create_table
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
@@ -14,7 +14,7 @@ logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d
 logger = logging.getLogger("main")
 
 @Config.config_loader
-def main():
+def app():
     logger.info('Application started')
     create_table(Config.QUERY_FOR_CREATE_AUTH_TABLE)
     create_table(Config.QUERY_FOR_CREATE_TASKS_TABLE)
@@ -22,5 +22,5 @@ def main():
     print(Config.WELCOME_MESSAGE)
     MainMenu.start()
     logger.info('Application started')
-    
-main()
+   
+app()

@@ -9,6 +9,8 @@ pytest = "*"
 pyyaml = "*"
 shortuuid = "*"
 tabulate = "*"
+pytest-cov = "*"
+pytest-mock = "*"
 
 [dev-packages]
 

@@ -14,9 +14,9 @@ class TestUtils:
         ("chetna", False),
         ("Tan@13", True),
         ("Raj$2a",True)])
-    def test_password_validation(self,password, expected_result):
+    def test_password_validator(self,password, expected_result):
         # Call the method under test
-        result = InputValidations.password_validation(password)
+        result = InputValidations.password_validator(password)
         # Assert the result
         assert result == expected_result
     
@@ -127,3 +127,12 @@ class TestUtils:
         assert result == expected_output
 
 
+    @pytest.mark.parametrize(("user_input, expected_status"), [
+    (("0",), "Reassigned"),
+    (("3", "1"), "Completed"), 
+    (("0",),"Reassigned")])
+    def test_task_status_validator(self,monkeypatch, user_input, expected_status):
+        user_input_iter = iter(user_input)
+        monkeypatch.setattr('builtins.input', lambda _: next(user_input_iter))
+        result = InputValidations.task_status_validator()
+        assert result == expected_status

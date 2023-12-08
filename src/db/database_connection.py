@@ -1,6 +1,6 @@
 import logging
 import sqlite3
-from utils.config import Config
+from src.utils.config import Config
 
 logger = logging.getLogger('database_context_manager')#puri krna h logging
 

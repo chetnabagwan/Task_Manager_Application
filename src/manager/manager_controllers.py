@@ -4,16 +4,16 @@ import sys
 import os
 from datetime import datetime
 from tabulate import tabulate
-from utils.input_validation import InputValidations
-from db.database_functions import add_data,update_data,fetch_data,display_data
-from utils.config import Config
+from src.utils.input_validation import InputValidations
+from src.db.database_functions import add_data,update_data,fetch_data,display_data
+from src.utils.config import Config
 
 logger = logging.getLogger('main.manager_controllers')
 
 class Manager:
+
     def __init__(self,user_id):
         self.user_id = user_id
-        
 
     def manager_menu(self):
 
@@ -25,7 +25,6 @@ class Manager:
                 match user_input:
                     case '1':
                         self.view_all_users()
-                        
                     case '2':
                         self.assign_tasks_to_user()
                     case '3':
@@ -33,7 +32,7 @@ class Manager:
                     case '4':
                         self.update_status_of_assigned_task()
                     case '5':
-                        os.system('cls') 
+                        os.system('cls')
                         return
                     case '6':
                         sys.exit()
@@ -42,13 +41,12 @@ class Manager:
                 print(Config.NEXT)
                 print(Config.MANAGER_PROMPT)
                 user_input = input(Config.ENTER_YOUR_CHOICE)
-                
             print(Config.THANKYOU)
   
     def view_all_users(self):
 
         """This method displays all users present in the database"""
-
+        
         logger.info(f'Manager:{self.user_id} is viewing all users')
         users = display_data(Config.QUERY_TO_VIEW_ALL_USERS)
         HEADERS = ["USER ID","USERNAME"]
@@ -99,7 +97,7 @@ class Manager:
             HEADERS = ['USER ID',"TASK ID","STATUS" ,"TASK NAME","TASK DESCRIPTION","DATE OF CREATION" ,"DUE DATE"]
             print(tabulate(data,headers=HEADERS , tablefmt = 'rounded_outline'))
             print(Config.WHICH_TASK)
-            task = InputValidations.user_or_task_id_validator()
+            task = InputValidations.taskid_validator()
             data = fetch_data(Config.QUERY_TO_FETCH_ALL_TASK_IDS,(task,))
             while len(data) == 0:
                 print(Config.TASKID_NOT_FOUND)

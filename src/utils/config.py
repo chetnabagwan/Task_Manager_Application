@@ -1,9 +1,11 @@
 import yaml
+import os
 
-FPATH = 'src\\yml_files\\prompts.yml'
-FPATH_PRINT_STATEMENTS = 'src\\yml_files\\print_statements.yml'
-F_PATH_MANAGER_QUERIES = 'src\\db\\queries\\manager_queries.yml'
-F_PATH_USER_QUERIES = 'src\\db\\queries\\user_queries.yml'
+path_current_directory = os.path.dirname(__file__)
+FPATH = os.path.join(path_current_directory, '../yml_files/prompts.yml')
+FPATH_PRINT_STATEMENTS = os.path.join(path_current_directory, '../yml_files/print_statements.yml')
+F_PATH_MANAGER_QUERIES = os.path.join(path_current_directory, '../db/queries/manager_queries.yml')
+F_PATH_USER_QUERIES = os.path.join(path_current_directory, '../db/queries/user_queries.yml')
 
 class Config:
     
@@ -58,6 +60,8 @@ class Config:
     TWO = None
     UPPER_Y =None
     LOWER_Y = None
+    UPPER_N =None
+    LOWER_N = None
     TODAY = None
     IMPORTANT = None
     FOR_LATER = None
@@ -68,6 +72,7 @@ class Config:
     TASKID_NOT_FOUND = None
     ATTEMPTS_EXHAUSTED = None
     DB_CONNECTION_ERROR = None
+
     
     QUERY_FOR_CREATE_AUTH_TABLE = None
     QUERY_FOR_CREATE_TASKS_TABLE= None
@@ -91,7 +96,6 @@ class Config:
     DELETE_MY_TASKS =None
     VIEW_TASKS_TO_DELETE =None
 
-
     @classmethod
     def load(cls):
         with open(FPATH, 'r') as f:
@@ -106,7 +110,9 @@ class Config:
             cls.GEN_REGEX = data['GEN_REGEX']
             cls.PWD_REGEX = data['PWD_REGEX']
             cls.ID_REGEX = data['ID_REGEX']
-  
+            cls.REASSIGNED = data['REASSIGNED']
+            cls.COMPLETED = data['COMPLETED']
+   
           
     @classmethod
     def load_print_statements(cls):
@@ -155,6 +161,8 @@ class Config:
             cls.TWO = data['TWO']
             cls.UPPER_Y =data['UPPER_Y']
             cls.LOWER_Y = data['LOWER_Y']
+            cls.UPPER_N =data['UPPER_N']
+            cls.LOWER_N = data['LOWER_N']
             cls.TODAY = data['TODAY']
             cls.IMPORTANT = data['IMPORTANT']
             cls.FOR_LATER = data['FOR_LATER']
@@ -166,7 +174,7 @@ class Config:
             cls.TASKID_NOT_FOUND = data['TASKID_NOT_FOUND']
             cls.ATTEMPTS_EXHAUSTED = data['ATTEMPTS_EXHAUSTED']
             cls.DB_CONNECTION_ERROR = data['DB_CONNECTION_ERROR']
-
+            cls.ERROR_MESSAGE  = data['ERROR_MESSAGE']
 
     @classmethod
     def loadManagerQueries(cls):

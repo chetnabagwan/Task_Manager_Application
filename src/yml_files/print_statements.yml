@@ -85,6 +85,8 @@ ATTEMPTS_EXHAUSTED : "\nAttempts Exhausted! Wait.....\n "
 
 DB_CONNECTION_ERROR : "\nDatabase Connection error\n"
 
+ERROR_MESSAGE : "Error occured!"
+
 STATUS : |
   Enter :
   0 to reassign 
@@ -103,6 +105,10 @@ STR_ZERO : '0'
 UPPER_Y : 'Y'
 
 LOWER_Y : 'y'
+
+UPPER_N : 'N'
+
+LOWER_N : 'n'
 
 TODAY : 'Today'
 

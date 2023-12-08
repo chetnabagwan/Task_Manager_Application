@@ -1,11 +1,16 @@
 import logging
-from utils.config import Config
-from .database_connection import DatabaseContextManager
+from src.utils.config import Config
+from src.db.database_connection import DatabaseContextManager
 
 """logging lgana hai"""
+logger = logging.getLogger('database helper functions')#puri krna h logging
+
 
 DATABASE_NAME = 'data.db'
 def create_table(query) -> None:
+    """Function to creat table in database."""
+
+    logger.info('Creating Database schema')
     with DatabaseContextManager(DATABASE_NAME) as connection:
         cursor = connection.cursor()
         cursor.execute(Config.QUERY_TO_ENABLE_FOREIGN_KEY)
@@ -13,6 +18,9 @@ def create_table(query) -> None:
 
 
 def add_data(query,*args) -> None:
+    """Function to add data in specific table of database"""
+
+    logger.info('Adding data in database')
     with DatabaseContextManager(DATABASE_NAME) as connection:
         cursor = connection.cursor() 
         cursor.execute(Config.QUERY_TO_ENABLE_FOREIGN_KEY)
@@ -20,14 +28,19 @@ def add_data(query,*args) -> None:
 
 
 def fetch_user(query,username: str,password: str) -> str:
+    """ Function to fetch user data from database"""
+    
+    logger.info('Fetching user data from the database.')
     with DatabaseContextManager(DATABASE_NAME) as connection:
         cursor = connection.cursor()
         cursor.execute(query,(username,password,))
         record = cursor.fetchone()
-        return record      
-    
+        return record     
+  
 
 def update_data(query,*args) -> None:
+
+    logger.info('Updating data in the database.')
     with DatabaseContextManager(DATABASE_NAME) as connection:
         cursor = connection.cursor()   
         cursor.execute(Config.QUERY_TO_ENABLE_FOREIGN_KEY)
@@ -35,6 +48,8 @@ def update_data(query,*args) -> None:
 
 
 def fetch_data(query,*args ) :
+
+    logger.info('Fetching data from the database')
     with DatabaseContextManager(DATABASE_NAME) as connection:
         cursor = connection.cursor()  
         cursor.execute(Config.QUERY_TO_ENABLE_FOREIGN_KEY)
@@ -44,6 +59,8 @@ def fetch_data(query,*args ) :
 
 
 def display_data(query):
+
+    logger.info('Displaying data from the database')
     with DatabaseContextManager(DATABASE_NAME) as connection:
         cursor = connection.cursor()  
         cursor.execute(Config.QUERY_TO_ENABLE_FOREIGN_KEY)

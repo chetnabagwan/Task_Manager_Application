@@ -1,7 +1,7 @@
 """This file contains the input validations functions."""
 
 import re
-from .config import Config
+from src.utils.config import Config
 from datetime import datetime
 import logging
 
@@ -10,7 +10,7 @@ logger = logging.getLogger('Validations')
 class InputValidations:
 
     @staticmethod
-    def password_validation(password):
+    def password_validator(password):
 
         """Validates the password entered whether it meets the password requirements or not."""
 
@@ -96,9 +96,9 @@ class InputValidations:
         while True:
             s = input(Config.STATUS)
             if s == Config.STR_ZERO:
-                return Config.Reassigned
+                return Config.REASSIGNED
             elif s == Config.ONE:
-                return Config.Completed
+                return Config.COMPLETED
             else:
                 print(Config.INVALID_INPUT)   
 
