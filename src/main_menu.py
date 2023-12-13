@@ -68,6 +68,5 @@ def user_has_permission(func):
 
 
 @user_has_permission
-def welcomemsg_role(role, user_id):
     print(f'-----------Welcome {role.upper()}------------\n')
     

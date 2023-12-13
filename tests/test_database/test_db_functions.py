@@ -1,21 +1,43 @@
-from db.database_functions import create_table,add_data,fetch_user,display_data,update_data
+import pytest
+from db.database_functions import create_table,add_data,fetch_user,display_data,update_data,fetch_data
+from db.database_connection import DatabaseContextManager
 
-def test_create_table():
-    pass
+data = ('example', 'data')
+mock_fetchall_result = [('result1',), ('result2',)]
+mock_fetchone_result = ('result1',)
 
-def test_add_date():
-    pass
+@pytest.fixture()
+def mock_db_connection(mocker):
+    '''Test Fixture to mock db connection'''
 
-def test_fetch_user():
-    pass
+    mock_connection = mocker.MagicMock(spec=DatabaseContextManager)
+    mocker.patch('db.database_functions.DatabaseContextManager', return_value=mock_connection)
+    mock_cursor = mocker.MagicMock()
+    mock_connection.__enter__.return_value.cursor.return_value = mock_cursor
 
-def test_display_data():
-    pass
+    return mock_cursor
 
-def test_update_data():
-    pass
+def test_create_table(mock_db_connection):
+    create_table('test')
 
-def test_fetch_data():
-    pass
+def test_add_date(mock_db_connection):
+    add_data('test')
 
+def test_fetch_user(mock_db_connection):
+    mock_cursor =mock_db_connection
+    mock_cursor.fetchone.return_value = mock_fetchone_result
+    fetch_user('test','chetna','che123')
+
+def test_display_data(mock_db_connection):
+    mock_cursor = mock_db_connection
+    mock_cursor.fetchall.return_value = mock_fetchall_result
+    display_data('test')
+
+def test_update_data(mock_db_connection):
+    update_data('test')
+
+def test_fetch_data(mock_db_connection):
+    mock_cursor = mock_db_connection
+    mock_cursor.fetchall.return_value = mock_fetchall_result
+    fetch_data('test')
 
