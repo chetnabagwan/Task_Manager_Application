@@ -2,15 +2,17 @@ import time
 import sys
 import logging
 import functools
-from src.authentication.authentication import Authentication
-from src.utils.config import Config
-from src.manager.manager_controllers import Manager
-from src.users.user_controllers import User
+from authentication.authentication import Authentication
+from utils.config import Config
+from manager.manager_controllers import Manager
+from users.user_controllers import User
 
 logger = logging.getLogger('app.main_menu')
 
 class MainMenu:
-    @classmethod 
+    """Main menu class"""
+
+    @classmethod
     def start(cls):
         print("\n")
         print(Config.LOGIN_SIGNUP_MENU)
@@ -26,7 +28,7 @@ class MainMenu:
                     print(Config.ATTEMPTS_EXHAUSTED)
                     time.sleep(10)
             elif ch == Config.TWO:
-                Authentication.signUp()
+                Authentication.sign_up()
                 a = input(Config.ASK_FOR_LOGIN)
                 print('\n')
                 if a in (Config.UPPER_Y, Config.LOWER_Y):

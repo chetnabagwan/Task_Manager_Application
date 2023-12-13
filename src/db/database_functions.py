@@ -1,6 +1,6 @@
 import logging
-from src.utils.config import Config
-from src.db.database_connection import DatabaseContextManager
+from utils.config import Config
+from .database_connection import DatabaseContextManager
 
 
 logger = logging.getLogger('database helper functions')#puri krna h logging

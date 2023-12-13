@@ -2,9 +2,9 @@
 
 import pytest
 from datetime import datetime
-from src.utils.config import Config
-from src.utils.helper_functions import parse_date,format_date
-from src.utils.input_validation import InputValidations
+from utils.config import Config
+from utils.helper_functions import parse_date,format_date
+from utils.input_validation import InputValidations
 
 #@pytest.mark.usefixtures('my_config_loader')
 class TestUtils:
@@ -37,7 +37,7 @@ class TestUtils:
     def test_task_name_validator(self,monkeypatch, capsys, user_input, expected_output, is_invalid_input):
         # Mock input and gen_validator
         monkeypatch.setattr('builtins.input', lambda _: user_input)
-        monkeypatch.setattr('src.utils.input_validation.InputValidations.gen_validator', lambda x: is_invalid_input)
+        monkeypatch.setattr('utils.input_validation.InputValidations.gen_validator', lambda x: is_invalid_input)
 
         result = InputValidations.task_name_validator()
 
@@ -56,7 +56,7 @@ class TestUtils:
     def test_task_desc_validator(self,monkeypatch, capsys, user_input, expected_output, is_invalid_input):
         # Mock input and gen_validator
         monkeypatch.setattr('builtins.input', lambda _: user_input)
-        monkeypatch.setattr('src.utils.input_validation.InputValidations.gen_validator', lambda x: is_invalid_input)
+        monkeypatch.setattr('utils.input_validation.InputValidations.gen_validator', lambda x: is_invalid_input)
 
         result = InputValidations.task_desc_validator()
 
@@ -81,8 +81,8 @@ class TestUtils:
     def test_date_validator(self,monkeypatch, capsys, user_input, today_date,expected_output, is_valid_input):
     
         monkeypatch.setattr('builtins.input', lambda _: user_input)
-        monkeypatch.setattr('src.utils.helper_functions.parse_date', parse_date)
-        monkeypatch.setattr('src.utils.helper_functions.format_date', format_date)
+        monkeypatch.setattr('utils.helper_functions.parse_date', parse_date)
+        monkeypatch.setattr('utils.helper_functions.format_date', format_date)
         result = InputValidations.date_validator("user_id_placeholder", today_date)
 
         captured = capsys.readouterr()  # Capture printed output

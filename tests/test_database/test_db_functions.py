@@ -1,4 +1,4 @@
-from src.db.database_functions import create_table,add_data,fetch_user,display_data,update_data
+from db.database_functions import create_table,add_data,fetch_user,display_data,update_data
 
 def test_create_table():
     pass

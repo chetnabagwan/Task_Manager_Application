@@ -1,9 +1,9 @@
 import shortuuid
 from pwinput import pwinput
-from src.utils.input_validation import InputValidations
-from src.utils.config import Config
-from src.db.database_functions import add_data,fetch_user
-from src.utils.helper_functions import hash_pwd
+from utils.input_validation import InputValidations
+from utils.config import Config
+from db.database_functions import add_data,fetch_user
+from utils.helper_functions import hash_pwd
 
 
 class Authentication:
@@ -40,7 +40,7 @@ class Authentication:
             return user_data[0],user_data[3]
 
     @classmethod
-    def signUp(self):
+    def sign_up(cls):
         while True:
             username = input(Config.PRINT_USERNAME).strip()
             if InputValidations.gen_validator(username) is False:

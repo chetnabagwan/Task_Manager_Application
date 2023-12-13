@@ -1,5 +1,5 @@
-from src.utils.config import Config
-from src.users.user_controllers import User
+from utils.config import Config
+from users.user_controllers import User
 
 class TestUserControllers:
     """class to test methods of User class"""
@@ -23,11 +23,11 @@ class TestUserControllers:
     def test_create_new_tasks(self,mocker,caplog,capsys):
         """Test function to test create new tasks function"""
         
-        mocker.patch('src.users.user_controllers.InputValidations.task_name_validator', return_value = 'Learn Python')
-        mocker.patch('src.users.user_controllers.InputValidations.task_desc_validator', return_value = 'Decorators and Generators')
-        mocker.patch('src.users.user_controllers.InputValidations.date_validator',return_value = '10-12-2023')
-        mocker.patch('src.users.user_controllers.InputValidations.task_category_validator',return_value = '1')
-        mocker.patch('src.users.user_controllers.add_data')
+        mocker.patch('users.user_controllers.InputValidations.task_name_validator', return_value = 'Learn Python')
+        mocker.patch('users.user_controllers.InputValidations.task_desc_validator', return_value = 'Decorators and Generators')
+        mocker.patch('users.user_controllers.InputValidations.date_validator',return_value = '10-12-2023')
+        mocker.patch('users.user_controllers.InputValidations.task_category_validator',return_value = '1')
+        mocker.patch('users.user_controllers.add_data')
         
         User('1234').create_new_tasks()
         captured = capsys.readouterr()
@@ -37,7 +37,7 @@ class TestUserControllers:
     def test_view_my_tasks_negative(self,mocker,caplog,capsys):
         """Test function to test view my tasks function when there are no tasks in database."""
         
-        mocker.patch('src.users.user_controllers.fetch_data',return_value = [])
+        mocker.patch('users.user_controllers.fetch_data',return_value = [])
 
         User('1234').view_my_tasks()
         captured = capsys.readouterr()
@@ -49,8 +49,8 @@ class TestUserControllers:
     def test_view_my_tasks_positive(self,mocker,caplog,capsys):
         """Test function to test view_my_tasks function when there are tasks available."""
         
-        mocker.patch('src.users.user_controllers.fetch_data',side_effect = ['test_data'])
-        mocker.patch('src.users.user_controllers.tabulate')
+        mocker.patch('users.user_controllers.fetch_data',side_effect = ['test_data'])
+        mocker.patch('users.user_controllers.tabulate')
       
         User('1234').view_my_tasks()
         captured = capsys.readouterr()
@@ -61,11 +61,11 @@ class TestUserControllers:
     def test_update_my_tasks(self,mocker,caplog,capsys):
         """Test function to test update my tasks function."""
 
-        mocker.patch('src.users.user_controllers.User.view_my_tasks')
-        mocker.patch('src.users.user_controllers.InputValidations.task_name_validator')
+        mocker.patch('users.user_controllers.User.view_my_tasks')
+        mocker.patch('users.user_controllers.InputValidations.task_name_validator')
         mocker.patch('builtins.input',side_effect=['4', Config.ONE,'2'])
-        mocker.patch('src.users.user_controllers.InputValidations.date_validator')
-        mocker.patch('src.users.user_controllers.update_data')
+        mocker.patch('users.user_controllers.InputValidations.date_validator')
+        mocker.patch('users.user_controllers.update_data')
         
         User('1234').update_my_tasks()
         captured = capsys.readouterr()
@@ -76,7 +76,7 @@ class TestUserControllers:
     def test_delete_my_tasks_negative(self,mocker,capsys,caplog):
         """Test function to test delete my tasks function when there are no tasks in database."""
         
-        mocker.patch('src.users.user_controllers.fetch_data',return_value = [])
+        mocker.patch('users.user_controllers.fetch_data',return_value = [])
 
         User('1234').delete_my_tasks()
         captured = capsys.readouterr()
@@ -87,10 +87,10 @@ class TestUserControllers:
     def test_delete_my_tasks_positive(self,mocker,capsys,caplog):
         """Test function to test delete my tasks function when there are tasks present in database."""
         
-        mocker.patch('src.users.user_controllers.fetch_data',return_value = ['test_data'])
-        mocker.patch('src.users.user_controllers.tabulate')
-        mocker.patch('src.users.user_controllers.InputValidations.taskid_validator')
-        mocker.patch('src.users.user_controllers.update_data')
+        mocker.patch('users.user_controllers.fetch_data',return_value = ['test_data'])
+        mocker.patch('users.user_controllers.tabulate')
+        mocker.patch('users.user_controllers.InputValidations.taskid_validator')
+        mocker.patch('users.user_controllers.update_data')
 
         User('1234').delete_my_tasks()
         captured = capsys.readouterr()

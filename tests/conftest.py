@@ -1,5 +1,5 @@
 import pytest
-from src.utils.config import Config
+from utils.config import Config
 
 
 @pytest.fixture(scope='session',autouse=True)

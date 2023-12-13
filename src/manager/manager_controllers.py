@@ -4,9 +4,9 @@ import sys
 import os
 from datetime import datetime
 from tabulate import tabulate
-from src.utils.input_validation import InputValidations
-from src.db.database_functions import add_data,update_data,fetch_data,display_data
-from src.utils.config import Config
+from utils.input_validation import InputValidations
+from db.database_functions import add_data,update_data,fetch_data,display_data
+from utils.config import Config
 
 logger = logging.getLogger('main.manager_controllers')
 
