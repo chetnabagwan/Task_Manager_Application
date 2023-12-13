@@ -2,11 +2,10 @@ import logging
 from src.utils.config import Config
 from src.db.database_connection import DatabaseContextManager
 
-"""logging lgana hai"""
+
 logger = logging.getLogger('database helper functions')#puri krna h logging
-
-
 DATABASE_NAME = 'data.db'
+
 def create_table(query) -> None:
     """Function to creat table in database."""
 
@@ -39,6 +38,7 @@ def fetch_user(query,username: str,password: str) -> str:
   
 
 def update_data(query,*args) -> None:
+    """Function to update data in database"""
 
     logger.info('Updating data in the database.')
     with DatabaseContextManager(DATABASE_NAME) as connection:
@@ -48,6 +48,7 @@ def update_data(query,*args) -> None:
 
 
 def fetch_data(query,*args ) :
+    """Function to fetch data from database"""
 
     logger.info('Fetching data from the database')
     with DatabaseContextManager(DATABASE_NAME) as connection:
@@ -59,6 +60,7 @@ def fetch_data(query,*args ) :
 
 
 def display_data(query):
+    """Function to display data from database"""
 
     logger.info('Displaying data from the database')
     with DatabaseContextManager(DATABASE_NAME) as connection:

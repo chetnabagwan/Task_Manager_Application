@@ -1,4 +1,7 @@
-from src.db.database_connection import DatabaseContextManager
+import pytest
+import sqlite3
 
-class TestDbConnection:
+from db.database_connection import DatabaseContextManager
+
+class TestDatabaseConnection:
     pass
