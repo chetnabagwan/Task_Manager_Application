@@ -8,27 +8,9 @@ MANAGER_PROMPT_WLCM : |
   5.Logout
   6.Exit
 
-MANAGER_PROMPT : |
-
-  1.View users
-  2.Assign tasks 
-  3.View status of assigned tasks
-  4.Update status of assigned tasks
-  5.Logout
-  6.Exit
-
 
 USER_PROMPT_WLCM : |
   ---------------WELCOME USER------------------
-
-  1.Create new tasks
-  2.Update tasks
-  3.View tasks
-  4.Delete tasks
-  5.Logout 
-  6.Exit
-
-USER_PROMPT : |
 
   1.Create new tasks
   2.Update tasks

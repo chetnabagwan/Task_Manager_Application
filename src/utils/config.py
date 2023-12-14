@@ -10,13 +10,11 @@ F_PATH_USER_QUERIES = os.path.join(path_current_directory, '../db/queries/user_q
 class Config:
     
     #Maintains all the config variables
-    MANAGER_PROMPT = None
-    USER_PROMPT = None
+    USER_PROMPT_WLCM  =None
     MANAGER_PROMPT_WLCM = None
     PASSWORD_REQUIREMENTS = None
     MANAGER = None
     ATTEMPTS = None
-    USER_PROMPT_WLCM = None
     WELCOME_MESSAGE = None
     WRONG_INPUT_ENTERED_MESSAGE = None
     ROW_NOT_EXISTS_MESSAGE =None
@@ -100,8 +98,6 @@ class Config:
     def load(cls):
         with open(FPATH, 'r') as f:
             data = yaml.safe_load(f)
-            cls.MANAGER_PROMPT = data['MANAGER_PROMPT']
-            cls.USER_PROMPT = data['USER_PROMPT']
             cls.MANAGER_PROMPT_WLCM = data['MANAGER_PROMPT_WLCM']
             cls.USER_PROMPT_WLCM = data['USER_PROMPT_WLCM']
             cls.ATTEMPTS = data['ATTEMPTS']

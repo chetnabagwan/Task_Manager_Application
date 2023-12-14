@@ -11,7 +11,21 @@ logger = logging.getLogger('app.main_menu')
 
 class MainMenu:
     """Main menu class"""
-
+    
+    @classmethod
+    def check_role(cls,role, user_id):
+        
+        if role == Config.MANAGER :
+            print(Config.MANAGER_PROMPT_WLCM)                                            
+            a = Manager(user_id)
+            a.manager_menu()
+            cls.start()
+        else :
+            print(Config.USER_PROMPT_WLCM)
+            a = User(user_id)
+            a.user_menu()
+            cls.start()
+        
     @classmethod
     def start(cls):
         print("\n")
@@ -43,30 +57,10 @@ class MainMenu:
             print(Config.LOGIN_SIGNUP_MENU)
             ch = input(Config.ENTER_YOUR_CHOICE)
 
-        welcomemsg_role(role, user_id)
+        cls.check_role(role, user_id)
       
 
-#decorator
-def user_has_permission(func):     
-    #wrapper function
-    @functools.wraps(func)
-    def check_role(*args):
-        role, user_id = args
-        if role == Config.MANAGER :                                            
-            func(role, user_id)
-            print(Config.MANAGER_PROMPT)
-            a = Manager(user_id)
-            a.manager_menu()
-            MainMenu.start()
-        else :
-            func(role,user_id)
-            print(Config.USER_PROMPT)
-            a = User(user_id)
-            a.user_menu()
-            MainMenu.start()
-    return check_role
 
-
-@user_has_permission
-    print(f'-----------Welcome {role.upper()}------------\n')
     
+
+

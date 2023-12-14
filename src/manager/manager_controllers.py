@@ -39,7 +39,7 @@ class Manager:
                     case _:
                         print(Config.WRONG_INPUT_ENTERED_MESSAGE)
                 print(Config.NEXT)
-                print(Config.MANAGER_PROMPT)
+                print(Config.MANAGER_PROMPT_WLCM)
                 user_input = input(Config.ENTER_YOUR_CHOICE)
             print(Config.THANKYOU)
   

@@ -19,7 +19,7 @@ class TestManager :
         captured = capsys.readouterr()
 
         assert Config.NEXT in captured.out
-        assert Config.MANAGER_PROMPT in captured.out
+        assert Config.MANAGER_PROMPT_WLCM in captured.out
 
     def test_view_all_users(self, mocker, caplog):
         """Test function to test view all users function"""
