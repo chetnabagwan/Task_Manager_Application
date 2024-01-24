@@ -11,6 +11,8 @@ shortuuid = "*"
 tabulate = "*"
 pytest-cov = "*"
 pytest-mock = "*"
+mysql-connector-python = "*"
+pymysql = "*"
 
 [dev-packages]
 

@@ -1,5 +1,5 @@
 """Context Manager for the database"""
-import sqlite3
+import pymysql
 
 class DatabaseContextManager:
     """ A class for sqlite3 database connection
@@ -11,12 +11,14 @@ class DatabaseContextManager:
             cls.instance = super().__new__(cls)
         return cls.instance
 
-    def __init__(self,host) -> None:
+    def __init__(self) -> None:
         self.connection = None
-        self.host = host
 
     def __enter__(self):
-        self.connection = sqlite3.connect(self.host)
+        self.connection = pymysql.connect(user='chetna', password='123456',
+                              host='127.0.0.1',
+                              database='task_manager'
+                              )
         return self.connection
         
 

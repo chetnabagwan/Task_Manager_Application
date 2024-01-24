@@ -2,10 +2,10 @@ import time
 import sys
 import logging
 import functools
-from authentication.authentication import Authentication
+from controllers.authentication import Authentication
 from utils.config import Config
-from manager.manager_controllers import Manager
-from users.user_controllers import User
+from controllers.manager_controllers import Manager
+from controllers.user_controllers import User
 
 logger = logging.getLogger('app.main_menu')
 

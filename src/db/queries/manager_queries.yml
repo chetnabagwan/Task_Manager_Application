@@ -1,42 +1,41 @@
 QUERY_FOR_CREATE_AUTH_TABLE : |
                               CREATE TABLE IF NOT EXISTS authentication
                               (user_id INTEGER PRIMARY KEY,
-                              username TEXT, 
-                              password TEXT, 
-                              role TEXT,
-                              is_changed DEFAULT INTEGER) 
+                              username VARCHAR(100), 
+                              password VARCHAR(400), 
+                              role VARCHAR(10)) 
                             
 QUERY_FOR_CREATE_TASKS_TABLE : |
                               CREATE TABLE IF NOT EXISTS tasks
-                              (task_id INTEGER PRIMARY KEY,
-                              user_id INTEGER, 
-                              task_name TEXT, 
-                              task_desc TEXT,
+                              (task_id INT PRIMARY KEY,
+                              user_id INT, 
+                              task_name VARCHAR(100), 
+                              task_desc VARCHAR(40),
                               date_created DATE,
                               due_date DATE,
-                              is_completed INTEGER DEFAULT 0,
-                              category TEXT,
-                              assigned_by TEXT,
+                              is_completed INT DEFAULT 0,
+                              category VARCHAR(100),
+                              assigned_by VARCHAR(100),
                               FOREIGN KEY (user_id) REFERENCES authentication(user_id) ON DELETE CASCADE) 
 
 QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE : |
                               CREATE TABLE IF NOT EXISTS assigned_tasks
-                              (man_id INTEGER PRIMARY KEY,
-                              user_id INTEGER, 
-                              task_id INTEGER, 
+                              (man_id INT PRIMARY KEY,
+                              user_id INT, 
+                              task_id INT, 
                               FOREIGN KEY (user_id) REFERENCES authentication(user_id) ON DELETE CASCADE,
                               FOREIGN KEY (task_id) REFERENCES tasks(task_id) ON DELETE CASCADE) 
 
 QUERY_TO_VERIFY_LOGIN : |
     SELECT * FROM authentication
-    WHERE username=? AND password=?
+    WHERE username=%s AND password= %s
 
 QUERY_TO_ENABLE_FOREIGN_KEY : PRAGMA foreign_keys = 1
 
 QUERY_TO_ADD_IN_AUTH_TABLE : |
                             INSERT INTO authentication
                             (user_id,username,password,role) 
-                            VALUES(?,?,?,'user')
+                            VALUES(%s,%s,%s,'user')
 
 QUERY_TO_VIEW_ALL_USERS : |
  SELECT user_id,username FROM authentication 
@@ -46,21 +45,21 @@ QUERY_TO_VIEW_TASK_TABLE_USERS : |
  SELECT * FROM tasks
 
 INSERT_INTO_TASKS_TABLE_BY_MANAGER : |
-  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (?,?,?,?,?,?,'pending',?,?)
+  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (%s,%s,%s,%s,%s,'pending',%s,%s)
 
 INSERT_INTO_ASSIGNED_TASKS_TABLE : |
- INSERT INTO assigned_tasks (man_id, user_id, task_id) VALUES (?,?,?)
+ INSERT INTO assigned_tasks (man_id, user_id, task_id) VALUES (%s,%s,%s)
 
 VIEW_STATUS_OF_MY_ASSIGNED_TASKS : |
  SELECT a.user_id,a.task_id,t.is_completed,t.task_name,t.task_desc,t.date_created,t.due_date
  FROM assigned_tasks AS a INNER JOIN tasks AS t
  ON a.task_id = t.task_id
- WHERE t.assigned_by = ?
+ WHERE t.assigned_by = %s
 
 UPDATE_STATUS_OF_MY_ASSIGNED_TASKS : |
  UPDATE tasks
- SET is_completed=?
- WHERE task_id =?      
+ SET is_completed=%s
+ WHERE task_id =%s
 
 QUERY_TO_FETCH_ALL_TASK_IDS : 
- SELECT task_id FROM tasks WHERE task_id = ?
+ SELECT task_id FROM tasks WHERE task_id = %s

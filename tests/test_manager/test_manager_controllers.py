@@ -1,6 +1,6 @@
 """Test file to test manager_controllers.py"""
 from utils.config import Config
-from manager.manager_controllers import Manager
+from controllers.manager_controllers import Manager
 
 
 class TestManager :

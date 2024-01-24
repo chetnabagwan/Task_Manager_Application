@@ -1,5 +1,5 @@
 from utils.config import Config
-from users.user_controllers import User
+from controllers.user_controllers import User
 
 class TestUserControllers:
     """class to test methods of User class"""

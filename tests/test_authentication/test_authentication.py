@@ -1,6 +1,6 @@
 """Test file for authentication.py file"""
 from utils.config import Config
-from authentication.authentication import Authentication
+from controllers.authentication import Authentication
 
 class TestAuthentication:
     """class to test Authentication class of authentication module in """

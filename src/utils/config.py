@@ -9,7 +9,6 @@ F_PATH_USER_QUERIES = os.path.join(path_current_directory, '../db/queries/user_q
 
 class Config:
     
-    #Maintains all the config variables
     USER_PROMPT_WLCM  =None
     MANAGER_PROMPT_WLCM = None
     PASSWORD_REQUIREMENTS = None
@@ -207,10 +206,10 @@ class Config:
     @classmethod
     def config_loader(cls,func):
         def wrapper_func():
-            Config.load()
-            Config.loadManagerQueries()
-            Config.loadUserQueries()
-            Config.load_print_statements()
+            cls.load()
+            cls.loadManagerQueries()
+            cls.loadUserQueries()
+            cls.load_print_statements()
             func()      
         return wrapper_func
     
