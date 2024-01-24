@@ -1,6 +1,7 @@
 """Context Manager for the database"""
 import pymysql
 
+
 class DatabaseContextManager:
     """ A class for sqlite3 database connection
         Automatically opens, commits and closes the connections

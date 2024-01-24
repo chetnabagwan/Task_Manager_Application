@@ -13,6 +13,7 @@ pytest-cov = "*"
 pytest-mock = "*"
 mysql-connector-python = "*"
 pymysql = "*"
+cryptography = "*"
 
 [dev-packages]
 
