@@ -17,12 +17,12 @@ logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d
                     datefmt="%d-%M-%Y %H:%M:%S", level=logging.DEBUG, filename='utils/logs.log')
 logger = logging.getLogger(__name__)
 
-# def create_admin():
-#     query = 'INSERT INTO authentication (user_id,username,password,role) VALUES (%s,%s,%s,%s)'
-#     password = 'admin'
-#     hashed_password = hashlib.sha256(password.encode()).hexdigest()
-#     data = ('1234','chetna',hashed_password,'admin')
-#     add_data(query, data)
+def create_admin():
+    query = 'INSERT INTO authentication (user_id,username,password,role) VALUES (%s,%s,%s,%s)'
+    password = 'Chetna@12'
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    data = ('1234','chetna',hashed_password,'admin')
+    add_data(query, data)
 
 @Config.config_loader
 def app():
@@ -31,6 +31,7 @@ def app():
     create_table(Config.QUERY_FOR_CREATE_AUTH_TABLE)
     create_table(Config.QUERY_FOR_CREATE_TASKS_TABLE)
     create_table(Config.QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE)
+    create_admin()
     print(Config.WELCOME_MESSAGE)
     MainMenu.start()
     logger.info('Application ended')    
