@@ -69,6 +69,9 @@ class Config:
     TASKID_NOT_FOUND = None
     ATTEMPTS_EXHAUSTED = None
     DB_CONNECTION_ERROR = None
+    GEN_REGEX = None
+    PWD_REGEX = None
+    ID_REGEX = None
 
     
     QUERY_FOR_CREATE_AUTH_TABLE = None

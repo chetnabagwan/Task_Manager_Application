@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
+from routes.auth import blp as AuthBlueprint
 from utils.config import Config
 
 @Config.config_loader
