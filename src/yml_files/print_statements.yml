@@ -121,3 +121,5 @@ INVALID_USERNAME : "INVALID USERNAME!\n"
 INVALID_INPUT : "INVALID INPUT!"
 
 TASKID_NOT_FOUND : "NO SUCH TASK FOUND! \n"
+
+PARAMS : "[{'name': 'Authorization', 'in': 'header', 'description': 'Authorization: Bearer <access_token>', 'required': 'true'}]"

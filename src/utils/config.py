@@ -72,6 +72,8 @@ class Config:
     GEN_REGEX = None
     PWD_REGEX = None
     ID_REGEX = None
+    PARAMS = None
+    JWT_SECRET_KEY = None
 
     
     QUERY_FOR_CREATE_AUTH_TABLE = None
@@ -173,6 +175,8 @@ class Config:
             cls.ATTEMPTS_EXHAUSTED = data['ATTEMPTS_EXHAUSTED']
             cls.DB_CONNECTION_ERROR = data['DB_CONNECTION_ERROR']
             cls.ERROR_MESSAGE  = data['ERROR_MESSAGE']
+            cls.PARAMS = data['PARAMS']
+            cls.JWT_SECRET_KEY = data['JWT_SECRET_KEY']
 
     @classmethod
     def loadManagerQueries(cls):
@@ -206,13 +210,10 @@ class Config:
             cls.VIEW_TASKS_TO_DELETE = data['VIEW_TASKS_TO_DELETE']
             
 
-    @classmethod
-    def config_loader(cls,func):
-        def wrapper_func():
-            cls.load()
-            cls.loadManagerQueries()
-            cls.loadUserQueries()
-            cls.load_print_statements()
-            func()      
-        return wrapper_func
+  
+Config.load()
+Config.loadManagerQueries()
+Config.loadUserQueries()
+Config.load_print_statements()
+
     

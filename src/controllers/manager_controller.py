@@ -1,30 +1,47 @@
-from utils.helper_functions import DataNotFoundError,create_userid
-from db.database_functions import add_data,update_data,fetch_data
+import logging
+from flask import abort
+from business.manager import Manager
+from utils.helper_functions import DataNotFoundError,NotAuthorizedError,create_userid,date_today
 from utils.config import Config
 
+logger = logging.getLogger('main.manager_controllers')
 
+mb_obj = Manager()
 
-class Manager:
-    '''This class contains Manager operations logic'''
+class ManagerController:
 
-    def get_all_users(self):
+    def get_all_users(self,token):
         """This method displays all users present in the database"""
-
-        users = fetch_data(Config.QUERY_TO_VIEW_ALL_USERS)
-        if users:
-            return users
-        raise DataNotFoundError("No users found!")
         
+        logger.info(f'Manager is viewing all users')
+        try:
+            r = token['role']
+            if r != 'admin':
+                raise NotAuthorizedError
+            data = mb_obj.get_all_users()
+            return data
+        except DataNotFoundError:
+            abort(404,message = "Data not found")
 
-    def assign_tasks_to_user(self,task_id,user,task_name,task_desc,today_date,due_date,category,man_id):
-        """This method assigns tasks to a selected user."""
 
+    def assign_tasks_to_user(self,token,data):
+        """This method assigns tasks to a user."""
+        logger.info(f'Manager is assigning tasks to users.')
         try:    
-            add_data(Config.INSERT_INTO_TASKS_TABLE_BY_MANAGER,(task_id,user,task_name,task_desc,today_date,due_date,category,man_id),
-                     Config.INSERT_INTO_ASSIGNED_TASKS_TABLE,(man_id,user,task_id))
-        except Exception as e :
+            r = token['role']
+            if r != 'admin':
+                raise NotAuthorizedError
+            man_id = token['sub']
+            task_id = create_userid()
+            user = data['user']
+            task_name = data['task_name']
+            task_desc = data['task_desc']
+            today_date = date_today()
+            due_date = data['due_date']
+            category = data['category']
+            mb_obj.assign_tasks_to_user(task_id,user,task_name,task_desc,today_date,due_date,category,man_id),
+        except Exception as e:
             raise e
-
 
     # def view_status_of_assigned_tasks(self):
 

@@ -34,3 +34,5 @@ PASSWORD_REQUIREMENTS : "A strong password should have at least one number, one 
 REASSIGNED : 'Reassigned'
 
 COMPLETED : 'Completed'
+
+JWT_SECRET_KEY  : "fIqrMcrIKjZqsEZdfwne82n8YsL6F3K0"

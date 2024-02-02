@@ -5,11 +5,17 @@ import shortuuid
 class DataNotFoundError(Exception):
     pass
 
-def parse_date(date_str, fmt):
-    return datetime.strptime(date_str, fmt)
+class NotAuthorizedError(Exception):
+    pass
 
-def format_date(date_obj, fmt):
-    return date_obj.strftime(fmt)
+# def parse_date(date_str, fmt):
+#     return datetime.strptime(date_str, fmt)
+
+# def format_date(date_obj, fmt):
+#     return date_obj.strftime(fmt)
+
+def date_today():
+    return datetime.strptime((datetime.strftime(datetime.now(),"%d-%m-%Y")),"%d-%m-%Y").strftime("%d-%m-%Y")
 
 def hash_pwd(password):
     h_pwd =  hashlib.sha256(password.encode()).hexdigest()

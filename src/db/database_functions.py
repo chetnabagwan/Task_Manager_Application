@@ -1,4 +1,5 @@
 import logging
+import pymysql
 from utils.config import Config
 from .database_connection import DatabaseContextManager
 
@@ -48,18 +49,9 @@ def fetch_data(query,*args ) :
 
     logger.info('Fetching data from the database')
     with DatabaseContextManager() as connection:
-        cursor = connection.cursor()  
+        cursor = connection.cursor(pymysql.cursors.DictCursor)  
         cursor.execute(query,*args)
         records = cursor.fetchall()
         return records
 
 
-def display_data(query):
-    """Function to display data from database"""
-
-    logger.info('Displaying data from the database')
-    with DatabaseContextManager() as connection:
-        cursor = connection.cursor()  
-        data = cursor.execute(query).fetchall()
-        return data
-    
