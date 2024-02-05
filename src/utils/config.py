@@ -38,6 +38,7 @@ class Config:
     INVALID_CREDENTIALS = None
     LOGIN_SUCCESSFUL = None
     SIGNUP_SUCCESSFUL = None
+    LOGOUT_SUCCESSFUL = None
     THANKYOU = None 
     TASK_ASSIGNED_SUCCESSFULLY = None
     INVALID_DUE_DATE = None
@@ -112,6 +113,7 @@ class Config:
             cls.ID_REGEX = data['ID_REGEX']
             cls.REASSIGNED = data['REASSIGNED']
             cls.COMPLETED = data['COMPLETED']
+            cls.JWT_SECRET_KEY = data['JWT_SECRET_KEY']
    
           
     @classmethod
@@ -141,6 +143,7 @@ class Config:
             cls.ASK_FOR_LOGIN = data['ASK_FOR_LOGIN']
             cls.INVALID_CREDENTIALS = data['INVALID_CREDENTIALS']
             cls.LOGIN_SUCCESSFUL = data['LOGIN_SUCCESSFUL']
+            cls.LOGOUT_SUCCESSFUL = data['LOGOUT_SUCCESSFUL']
             cls.SIGNUP_SUCCESSFUL = data['SIGNUP_SUCCESSFUL']
             cls.THANKYOU = data['THANKYOU'] 
             cls.TASK_ASSIGNED_SUCCESSFULLY = data['TASK_ASSIGNED_SUCCESSFULLY']
@@ -176,7 +179,6 @@ class Config:
             cls.DB_CONNECTION_ERROR = data['DB_CONNECTION_ERROR']
             cls.ERROR_MESSAGE  = data['ERROR_MESSAGE']
             cls.PARAMS = data['PARAMS']
-            cls.JWT_SECRET_KEY = data['JWT_SECRET_KEY']
 
     @classmethod
     def loadManagerQueries(cls):

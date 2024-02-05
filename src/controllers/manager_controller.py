@@ -11,7 +11,7 @@ mb_obj = Manager()
 class ManagerController:
 
     def get_all_users(self,token):
-        """This method displays all users present in the database"""
+        '''This method displays all users present in the database'''
         
         logger.info(f'Manager is viewing all users')
         try:
@@ -25,11 +25,13 @@ class ManagerController:
 
 
     def assign_tasks_to_user(self,token,data):
-        """This method assigns tasks to a user."""
+        '''This method assigns tasks to a user.'''
+
         logger.info(f'Manager is assigning tasks to users.')
         try:    
             r = token['role']
             if r != 'admin':
+                logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
                 raise NotAuthorizedError
             man_id = token['sub']
             task_id = create_userid()

@@ -12,7 +12,7 @@ man_obj = ManagerController()
 @blp.route('/users')
 class Allusers(MethodView):
     @jwt_required()
-    @blp.doc(parameters=Config.PARAMS)
+    @blp.doc(parameters=[{'name': 'Authorization', 'in': 'header', 'description': 'Authorization: Bearer <access_token>', 'required': 'true'}])
     def get(self):
         token = get_jwt()
         return man_obj.get_all_users(token)
@@ -21,7 +21,8 @@ class Allusers(MethodView):
 class AssignTasks(MethodView):
     @blp.arguments(AssignTasksSchema)
     @jwt_required()
-    @blp.doc(parameters=Config.PARAMS)
+    # @blp.doc(parameters=Config.PARAMS)
+    @blp.doc(parameters=[{'name': 'Authorization', 'in': 'header', 'description': 'Authorization: Bearer <access_token>', 'required': 'true'}])
     def post(self,data):
         token=get_jwt()
         man_obj.assign_tasks_to_user(token,data)

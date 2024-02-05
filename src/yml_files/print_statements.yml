@@ -47,11 +47,13 @@ ENTER_YOUR_CHOICE : "\nEnter your choice : "
 
 ASK_FOR_LOGIN : "Want to Login? Y/N : "
 
-LOGIN_SUCCESSFUL : "\nLogin Successful!\n"
+LOGIN_SUCCESSFUL : "Login Successful!"
 
-INVALID_CREDENTIALS : "\nInvalid Credentials!\n"
+LOGOUT_SUCCESSFUL : "Logout Successful"
 
-SIGNUP_SUCCESSFUL : "Signed up successfully!\n"
+INVALID_CREDENTIALS : "Invalid Credentials!"
+
+SIGNUP_SUCCESSFUL : "Signed up successfully!"
 
 THANKYOU : "\nThankyou!\n"
 
