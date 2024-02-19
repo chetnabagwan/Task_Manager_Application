@@ -24,4 +24,4 @@ def create_app():
     logger.info('Application ended')
     return app
 
-create_app()
+flask_app = create_app()
