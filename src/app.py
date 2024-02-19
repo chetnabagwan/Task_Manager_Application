@@ -2,6 +2,7 @@ import logging
 from utils.flaskappconfig import flask_config,register_blueprints
 from flask import Flask
 from flask_smorest import Api
+from flask_jwt_extended import JWTManager
 from utils.config import Config
 
 logging.basicConfig(
@@ -18,6 +19,7 @@ def create_app():
     logger.info('Application started')
     flask_config(app)
     api = Api(app)
+    jwt = JWTManager(app) 
     register_blueprints(api)
     logger.info('Application ended')
     return app

@@ -1,10 +1,19 @@
 QUERY_FOR_CREATE_AUTH_TABLE : |
                               CREATE TABLE IF NOT EXISTS authentication
                               (user_id INTEGER PRIMARY KEY,
-                              username VARCHAR(100), 
+                              username VARCHAR(100) UNIQUE, 
                               password VARCHAR(400), 
                               role VARCHAR(10)) 
-                            
+
+QUERY_FOR_CREATE_USERS_TABLE : |
+                              CREATE TABLE IF NOT EXISTS users
+                              (user_id INT PRIMARY KEY,
+                              name VARCHAR(100),
+                              email VARCHAR(100),
+                              phone_number BIGINT,
+                              gender VARCHAR(20),
+                              FOREIGN KEY (user_id) REFERENCES authentication(user_id) ON DELETE CASCADE)
+
 QUERY_FOR_CREATE_TASKS_TABLE : |
                               CREATE TABLE IF NOT EXISTS tasks
                               (task_id INT PRIMARY KEY,
@@ -16,7 +25,7 @@ QUERY_FOR_CREATE_TASKS_TABLE : |
                               is_completed INT DEFAULT 0,
                               category VARCHAR(100),
                               assigned_by VARCHAR(100),
-                              FOREIGN KEY (user_id) REFERENCES authentication(user_id) ON DELETE CASCADE) 
+                              FOREIGN KEY (user_id) REFERENCES assigned_tasks(user_id) ON DELETE CASCADE) 
 
 QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE : |
                               CREATE TABLE IF NOT EXISTS assigned_tasks
@@ -30,15 +39,21 @@ QUERY_TO_VERIFY_LOGIN : |
     SELECT * FROM authentication
     WHERE username=%s AND password= %s
 
-QUERY_TO_ENABLE_FOREIGN_KEY : PRAGMA foreign_keys = 1
+# QUERY_TO_ENABLE_FOREIGN_KEY : PRAGMA foreign_keys = 1
 
 QUERY_TO_ADD_IN_AUTH_TABLE : |
                             INSERT INTO authentication
                             (user_id,username,password,role) 
                             VALUES(%s,%s,%s,'user')
 
+QUERY_TO_ADD_IN_USERS_TABLE : |
+                            INSERT INTO users
+                            (user_id,name,email,phone_number,gender) VALUES(%s,%s,%s,%s,%s)
+
 QUERY_TO_VIEW_ALL_USERS : |
- SELECT user_id,username FROM authentication 
+ SELECT a.user_id,a.username,u.name,u.email,u.phone_number,u.gender 
+ FROM authentication AS a INNER JOIN users AS u
+ ON A.user_id = u.user_id
  WHERE role = 'user'
  
 QUERY_TO_VIEW_TASK_TABLE_USERS : |
@@ -63,3 +78,6 @@ UPDATE_STATUS_OF_MY_ASSIGNED_TASKS : |
 
 QUERY_TO_FETCH_ALL_TASK_IDS : 
  SELECT task_id FROM tasks WHERE task_id = %s
+
+Query_to_VIEW_ALL_ASSIGNED_TASKS : |
+  SELECT assign.user_id,assign.task_id FROM assigned

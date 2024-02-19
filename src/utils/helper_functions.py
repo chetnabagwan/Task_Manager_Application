@@ -8,6 +8,9 @@ class DataNotFoundError(Exception):
 class NotAuthorizedError(Exception):
     pass
 
+class UserAlreadyExistError(Exception):
+    pass
+
 # def parse_date(date_str, fmt):
 #     return datetime.strptime(date_str, fmt)
 

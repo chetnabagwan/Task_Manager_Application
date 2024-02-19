@@ -13,6 +13,10 @@ pytest-cov = "*"
 pytest-mock = "*"
 mysql-connector-python = "*"
 pymysql = "*"
+flask = "*"
+flask-jwt-extended = "*"
+flask-smorest = "*"
+cryptography = "*"
 
 [dev-packages]
 

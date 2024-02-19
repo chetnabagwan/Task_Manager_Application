@@ -4,8 +4,8 @@ import os
 path_current_directory = os.path.dirname(__file__)
 FPATH = os.path.join(path_current_directory, '../yml_files/prompts.yml')
 FPATH_PRINT_STATEMENTS = os.path.join(path_current_directory, '../yml_files/print_statements.yml')
-F_PATH_MANAGER_QUERIES = os.path.join(path_current_directory, '../db/queries/manager_queries.yml')
-F_PATH_USER_QUERIES = os.path.join(path_current_directory, '../db/queries/user_queries.yml')
+F_PATH_MANAGER_QUERIES = os.path.join(path_current_directory, '../yml_files/manager_queries.yml')
+F_PATH_USER_QUERIES = os.path.join(path_current_directory, '../yml_files/user_queries.yml')
 
 class Config:
     
@@ -27,6 +27,7 @@ class Config:
     LOGIN_FAILED = None
     LOGIN_SIGNUP_MENU = None
     NO_DATA_FOUND = None
+    USER_ALREADY_EXIST = None
     YOUR_TASKS_ARE = None
     NO_TASKS_FOUND_TO_BE_DELETED = None
     TASK_ADDED_SUCCESSFULLY = None
@@ -75,13 +76,15 @@ class Config:
     ID_REGEX = None
     PARAMS = None
     JWT_SECRET_KEY = None
+    USER_ALREADY_EXIST =None
 
     
     QUERY_FOR_CREATE_AUTH_TABLE = None
+    QUERY_FOR_CREATE_USERS_TABLE = None
     QUERY_FOR_CREATE_TASKS_TABLE= None
     QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE = None
-    QUERY_TO_ENABLE_FOREIGN_KEY = None
     QUERY_TO_ADD_IN_AUTH_TABLE = None
+    QUERY_TO_ADD_IN_USERS_TABLE = None
     QUERY_TO_VERIFY_LOGIN = None
     QUERY_TO_VIEW_ALL_USERS = None
     INSERT_INTO_TASKS_TABLE_BY_MANAGER = None
@@ -98,6 +101,8 @@ class Config:
     VIEW_TASKS = None
     DELETE_MY_TASKS =None
     VIEW_TASKS_TO_DELETE =None
+    VIEW_MY_PROFILE =None
+    UPDATE_MY_PROFILE = None
 
     @classmethod
     def load(cls):
@@ -179,16 +184,18 @@ class Config:
             cls.DB_CONNECTION_ERROR = data['DB_CONNECTION_ERROR']
             cls.ERROR_MESSAGE  = data['ERROR_MESSAGE']
             cls.PARAMS = data['PARAMS']
-
+            cls.USER_ALREADY_EXIST = data['USER_ALREADY_EXIST']
+ 
     @classmethod
     def loadManagerQueries(cls):
         with open(F_PATH_MANAGER_QUERIES, 'r') as f:
             data = yaml.safe_load(f)
             cls.QUERY_FOR_CREATE_AUTH_TABLE = data['QUERY_FOR_CREATE_AUTH_TABLE']
+            cls.QUERY_FOR_CREATE_USERS_TABLE = data['QUERY_FOR_CREATE_USERS_TABLE']
             cls.QUERY_FOR_CREATE_TASKS_TABLE= data['QUERY_FOR_CREATE_TASKS_TABLE']
             cls.QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE = data['QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE']
-            cls.QUERY_TO_ENABLE_FOREIGN_KEY = data['QUERY_TO_ENABLE_FOREIGN_KEY']
             cls.QUERY_TO_ADD_IN_AUTH_TABLE = data['QUERY_TO_ADD_IN_AUTH_TABLE']
+            cls.QUERY_TO_ADD_IN_USERS_TABLE = data['QUERY_TO_ADD_IN_USERS_TABLE']
             cls.QUERY_TO_VERIFY_LOGIN = data['QUERY_TO_VERIFY_LOGIN']
             cls.QUERY_TO_VIEW_ALL_USERS = data['QUERY_TO_VIEW_ALL_USERS']
             cls.INSERT_INTO_TASKS_TABLE_BY_MANAGER = data['INSERT_INTO_TASKS_TABLE_BY_MANAGER']
@@ -210,8 +217,9 @@ class Config:
             cls.VIEW_TASKS = data['VIEW_TASKS']
             cls.DELETE_MY_TASKS = data['DELETE_MY_TASKS']
             cls.VIEW_TASKS_TO_DELETE = data['VIEW_TASKS_TO_DELETE']
+            cls.VIEW_MY_PROFILE = data['VIEW_MY_PROFILE']
+            cls.UPDATE_MY_PROFILE = data['UPDATE_MY_PROFILE']
             
-
   
 Config.load()
 Config.loadManagerQueries()

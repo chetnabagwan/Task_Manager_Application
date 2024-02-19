@@ -35,6 +35,8 @@ YOUR_TASKS_ARE : "\nYour tasks are : "
 
 NO_DATA_FOUND : No tasks found!
 
+USER_ALREADY_EXIST : Username already in use!
+
 TASK_ADDED_SUCCESSFULLY : Task added successfully!
 
 TASK_DELETED_SUCCESSFULLY : "\nTask deleted successfully!"

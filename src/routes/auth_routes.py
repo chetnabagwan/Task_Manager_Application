@@ -1,3 +1,5 @@
+'Routes for user authentication'
+
 import logging
 from flask.views import MethodView
 from flask_jwt_extended import get_jwt, jwt_required
@@ -20,7 +22,7 @@ class Register(MethodView):
 @blp.route("/login")
 class Login(MethodView):
     @blp.arguments(LoginSchema)
-    def post(self,login_data: dict):
+    def post(self,login_data):
         return auth_obj.LoginController(login_data)
         
 

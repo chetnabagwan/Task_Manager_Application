@@ -2,8 +2,9 @@ from flask_smorest import abort
 import logging
 from business.authentication import Authentication
 from utils.config import Config
-from utils.helper_functions import DataNotFoundError
+from utils.helper_functions import DataNotFoundError,UserAlreadyExistError
 from blocklist import BLOCKLIST
+from pymysql import IntegrityError,DataError
 
 logger = logging.getLogger(__name__)
 
@@ -14,16 +15,23 @@ class AuthController:
 
     def RegisterController(self,register_data):
         '''Method for registering a new user'''
-
-        username = register_data['username']
-        logger.info(f'User with username : {username} is registering into the application')
-        password = register_data['password']
-        authb_obj.register(username,password)
-        return {'status_code':201,
-                'message': Config.SIGNUP_SUCCESSFUL}, 201
+        
+        try:
+            username = register_data['username']
+            logger.info(f'User with username : {username} is registering into the application')
+            password = register_data['password']
+            name = register_data['name']
+            email = register_data['email']
+            phone_number = register_data['phone_number']
+            gender = register_data['gender']
+            authb_obj.register(username,password,name,email,phone_number,gender)
+            return {
+                    'message': Config.SIGNUP_SUCCESSFUL}, 201
+        except IntegrityError:
+            abort(409,message=Config.USER_ALREADY_EXIST)
+        
     
-    
-    def LoginController(self,login_data: dict):
+    def LoginController(self,login_data):
             '''Method for user login'''
 
             username = login_data['username']

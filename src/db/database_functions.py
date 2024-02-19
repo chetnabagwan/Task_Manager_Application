@@ -15,13 +15,16 @@ def create_table(query) -> None:
         cursor.execute(query)
 
 
-def add_data(query,*args) -> None:
-    """Function to add data in specific table of database"""
 
-    logger.info('Adding data in database')
+def write_to_database(query:str|list,data:tuple|list):
     with DatabaseContextManager() as connection:
         cursor = connection.cursor() 
-        cursor.execute(query,*args)
+        if isinstance(query,str):
+            cursor.execute(query,data)
+        else:
+            for i in range(len(query)):
+                cursor.execute(query[i],data[i])
+        connection.commit()
 
 
 def fetch_user(query,username: str,password: str) -> str:

@@ -1,6 +1,8 @@
 'Manages all the configurations for the flask app'
-from routes.auth import blp as AuthBlueprint
-from routes.users import blp as ManagerBlueprint
+from routes.auth_routes import blp as AuthBlueprint
+from routes.manager_routes import blp as ManagerBlueprint
+from routes.user_routes import blp as UserBlueprint
+from routes.tasks_routes import blp as TaskBlueprint
 from utils.config import Config
 
 def flask_config(app):
@@ -20,3 +22,5 @@ def register_blueprints(api):
 
     api.register_blueprint(AuthBlueprint,url_prefix='/v1')
     api.register_blueprint(ManagerBlueprint,url_prefix='/v1')
+    api.register_blueprint(UserBlueprint,url_prefix='/v1')
+    api.register_blueprint(TaskBlueprint,url_prefix ='/v1')

@@ -22,11 +22,23 @@ UPDATE_TASK_STATUS : |
  SET is_completed = "complete"
  WHERE task_name = %s
 
-VIEW_TASKS : |
- SELECT * FROM tasks WHERE user_id = %s
 
 VIEW_TASKS_TO_DELETE : SELECT * FROM tasks WHERE user_id = %s AND assigned_by = "myself"
 
 DELETE_MY_TASKS : |
  DELETE from tasks WHERE user_id = %s AND task_id=%s AND assigned_by = 'myself'
 
+VIEW_TASKS : |
+ SELECT * FROM tasks WHERE user_id = %s
+
+VIEW_MY_PROFILE: |
+  SELECT auth.user_id,auth.username,user.name,user.email,user.phone_number,user.gender 
+  FROM authentication as auth INNER JOIN users as user
+  ON auth.user_id = user.user_id
+  WHERE auth.user_id = %s
+
+UPDATE_MY_PROFILE: |
+  UPDATE users
+  SET name = %s,
+  email = %s, phone_number = %s
+  WHERE user_id = %s
