@@ -49,7 +49,7 @@ QUERY_TO_ADD_IN_USERS_TABLE : |
 QUERY_TO_VIEW_ALL_USERS : |
  SELECT a.user_id,a.username,u.name,u.email,u.phone_number,u.gender 
  FROM authentication AS a INNER JOIN users AS u
- ON A.user_id = u.user_id
+ ON a.user_id = u.user_id
  WHERE role = 'user'
  
 QUERY_TO_VIEW_TASK_TABLE_USERS : |
