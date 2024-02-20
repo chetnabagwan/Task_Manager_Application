@@ -46,5 +46,5 @@ class Authentication:
         token = create_refresh_token(identity=user_id,additional_claims={"role":role})
         return token
     
-    # def logout():
+ 
         

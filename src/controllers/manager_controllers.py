@@ -20,9 +20,11 @@ class ManagerController:
             if r != 'manager':
                 abort(403,detail= "Not authorized")
             data = mb_obj.get_all_users_logic()
+            print(data)
             return data
-        except DatabaseError:
-            abort(404,detail= "No data found")
+        except Exception as e:
+            raise e
+            # abort(404,detail= "No data found")
 
 
     def view_status_of_assigned_tasks(self,token):
