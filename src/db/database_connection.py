@@ -15,9 +15,9 @@ class DatabaseContextManager:
         self.connection = None
 
     def __enter__(self):
-        self.connection = pymysql.connect(user='chetna', password='123456',
-                              host='127.0.0.1',
-                              database='task_manager'
+        self.connection = pymysql.connect(user='avnadmin', password='AVNS_SGWa-JGYMLqBwXsQkQJ',
+                              host='mysql-2c16dd04-bagwanchetna66-2a5b.a.aivencloud.com',
+                              database='taskmanager',port=22574,cursorclass=pymysql.cursors.DictCursor
                               )
         return self.connection
         

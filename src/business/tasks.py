@@ -28,11 +28,13 @@ class Task:
         
         try:
             tasks = fetch_data(Config.VIEW_TASKS_TO_DELETE_BY_USERS,(user_id,))
-            for i in range(len(tasks)):
-                if tasks[i]['task_id']==task_id:
+            for task in tasks:
+                if task['task_id']==task_id:
+                    print(task['task_id'])
                     update_data(Config.UPDATE_TASK,(task_name,task_desc,due_date,is_completed,task_id))
-                else:
-                    raise DataNotFoundError
+                    return
+                
+            raise DataNotFoundError
         except Exception as e:
             raise e
 
@@ -42,31 +44,44 @@ class Task:
         
         try:
             tasks = fetch_data(Config.GET_TASKS_TO_DELETE_BY_MANAGER,(man_id,))
-            if task_id not in tasks:
-                raise DataNotFoundError
-            update_data(Config.UPDATE_TASK,(task_name,task_desc,due_date,is_completed,task_id))
+            for task in tasks:
+                if task['task_id']==task_id:
+                    print(task['task_id'])
+                    update_data(Config.UPDATE_TASK,(task_name,task_desc,due_date,is_completed,task_id))
+                    return  
+            raise DataNotFoundError
         except Exception as e:
             raise e
         
 
-    def delete_my_tasks(self,task_id):
+    def delete_my_tasks(self,task_id,user_id):
         """This method deletes a selected task"""
 
         try:
-            tasks = fetch_data(Config.VIEW_TASKS_TO_DELETE_BY_USERS)
-            if task_id not in tasks:
-                raise DataNotFoundError
-            update_data(Config.DELETE_TASKS,(task_id,))
+            tasks = fetch_data(Config.VIEW_TASKS_TO_DELETE_BY_USERS,(user_id,))
+            for task in tasks:
+                if task['task_id']==task_id:
+                    update_data(Config.DELETE_TASKS,(task_id,))
+                    print("got it user")
+                    return     
+            raise DataNotFoundError
         except Exception as e:
             raise e
 
-    def delete_assigned_tasks(Self,task_id):
+    def delete_assigned_tasks(Self,task_id,man_id):
         """This method deletes the assigned tasks by manager"""
 
         try:
-            tasks = fetch_data(Config.GET_TASKS_TO_DELETE_BY_MANAGER)
-            if task_id not in tasks:
-                raise DataNotFoundError
-            update_data(Config.DELETE_TASKS,(task_id,))
+            print(task_id)
+            tasks = fetch_data(Config.GET_TASKS_TO_DELETE_BY_MANAGER,(man_id,))
+            print(tasks)
+            for task in tasks:
+                if task['task_id']==int(task_id):
+                    print("hello")
+                    update_data(Config.DELETE_TASKS,(task_id,))
+                    print("got it manager")
+
+                    return  
+            raise DataNotFoundError
         except Exception as e:
             raise e

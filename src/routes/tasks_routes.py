@@ -18,17 +18,18 @@ class CreateTasks(MethodView):
     @blp.doc(parameters=[{'name': 'Authorization', 'in': 'header', 'description': 'Authorization: Bearer <access_token>', 'required': 'true'}])
     def post(self,data):
         token = get_jwt()
-        return t_obj.create_new_tasks(token,data)
+        return t_obj.create_new_tasks(token,data), 201
 
     
 @blp.route('/assign-tasks')
 class AssignTasks(MethodView):
+    
     @blp.arguments(AssignTasksSchema)
     @jwt_required()
     @blp.doc(parameters=[{'name': 'Authorization', 'in': 'header', 'description': 'Authorization: Bearer <access_token>', 'required': 'true'}])
     def post(self,data):
         token=get_jwt()
-        return t_obj.assign_tasks_to_user(token,data)
+        return t_obj.assign_tasks_to_user(token,data), 201
 
         
 @blp.route('/update-tasks')
@@ -43,11 +44,11 @@ class UpdateMyTasks(MethodView):
         return t_obj.update_tasks(token,data)
     
 
-@blp.route('/delete-tasks')
+@blp.route('/delete-tasks/<string:task_id>')
 class DeleteTasks(MethodView):
     '''Route to delete a task'''
     @jwt_required()
     @blp.doc(parameters=[{'name': 'Authorization', 'in': 'header', 'description': 'Authorization: Bearer <access_token>', 'required': 'true'}])
-    def delete(self,data):
+    def delete(self,task_id):
         token = get_jwt()
-        return t_obj.delete_tasks(token,data)
+        return t_obj.delete_tasks(token,task_id)

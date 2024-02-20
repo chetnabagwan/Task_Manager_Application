@@ -15,9 +15,9 @@
 #         self.connection = None
 
 #     def __enter__(self):
-#         self.connection = pymysql.connect(user='avnadmin', password='AVNS_KvbYU3ZrtZFyIU21HQz',
-#                               host='minor-mysql-1591ab91-bagwanchetna66-2a5b.a.aivencloud.com',
-#                               database='taskmanager',port=22574,cursorclass=pymysql.cursors.DictCursor
+#         self.connection = pymysql.connect(user='chetna', password='123456',
+#                               host='127.0.0.1',
+#                               database='task_manager'
 #                               )
 #         return self.connection
         

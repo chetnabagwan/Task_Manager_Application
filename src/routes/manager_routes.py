@@ -19,13 +19,14 @@ class Allusers(MethodView):
         return man_obj.get_all_users(token)
 
 
-@blp.route('/task-status')
+@blp.route('/assigned-task-status')
 class ViewStatusOfAssignedTasks(MethodView):
    
+    @jwt_required()
     @blp.doc(parameters=[{'name': 'Authorization', 'in': 'header', 'description': 'Authorization: Bearer <access_token>', 'required': 'true'}])
     def get(self):
         token = get_jwt()
-        man_obj.view_status_of_assigned_tasks(token)
+        return man_obj.view_status_of_assigned_tasks(token)
 
 
 

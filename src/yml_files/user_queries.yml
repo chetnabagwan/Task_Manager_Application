@@ -31,10 +31,10 @@ UPDATE_TASK : |
 
 VIEW_TASKS_TO_DELETE_BY_USERS : SELECT task_id FROM tasks WHERE user_id = %s AND assigned_by = "myself"
 
-GET_TASKS_TO_DELETE_BY_MANAGER : SELECT task_id FROM tasks WHERE assigned_by=man_id
+GET_TASKS_TO_DELETE_BY_MANAGER : SELECT task_id FROM tasks WHERE assigned_by=%s
 
 DELETE_TASKS : |
- DELETE from tasks WHERE task_id=%s 
+ DELETE from tasks WHERE task_id=%s  
 
 VIEW_TASKS : |
  SELECT * FROM tasks WHERE user_id = %s

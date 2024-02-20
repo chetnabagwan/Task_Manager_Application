@@ -25,11 +25,12 @@ class Authentication:
         
             hashed_password = hash_pwd(password)
             user_data = fetch_user(Config.QUERY_TO_VERIFY_LOGIN,username,hashed_password)
+            # print(user_data)
             if user_data is None:
                 logger.info(f'No user found with username : {username}')
                 raise DataNotFoundError('User not found')
-            user_data[2] == hashed_password
-            return user_data[0],user_data[3]
+            user_data['password'] == hashed_password
+            return user_data['user_id'],user_data['role']
 
  
     def generate_access_token(self,user_id,role):

@@ -28,28 +28,16 @@ class ManagerController:
     def view_status_of_assigned_tasks(self,token):
         """This method shows status of tasks assigned by particular manager. """
 
-        logger.info(f'Manager:{man_id} is trying to view status of assigned tasks')
+        logger.info('Manager is trying to view status of assigned tasks')
         try:    
             r = token['role']
             if r != 'manager':
                 logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                raise NotAuthorizedError
+                abort(403,detail= "Not authorized")
             man_id = token['sub']
-            mb_obj.view_status_of_assigned_tasks_logic(man_id)
+            return mb_obj.view_status_of_assigned_tasks_logic(man_id)
         except Exception as e:
             raise e
 
 
-    def update_taskstatus(self,token,data):
-        logger.info(f'Manager:{man_id} is trying to view status of assigned tasks')
-        try:    
-            r = token['role']
-            if r != 'manager':
-                logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                raise NotAuthorizedError
-            man_id = token['sub']
-            task_id = data['task_id']
-            status = data['status']
-            mb_obj.update_status_of_assigned_task(task_id,status)
-        except Exception as e:
-            raise e
+  

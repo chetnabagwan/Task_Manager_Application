@@ -1,5 +1,5 @@
 import logging
-from flask import abort
+from flask_smorest import abort
 from business.user import User
 from utils.helper_functions import DataNotFoundError,NotAuthorizedError,create_id,date_today
 from utils.config import Config
@@ -18,7 +18,7 @@ class UserController:
             r = token['role']
             if r != 'user':
                 logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                raise NotAuthorizedError
+                abort(403,detail= "Not authorized")
             user_id = token['sub']
             profile_data = ub_obj.myprofile(user_id)
             return profile_data
@@ -30,9 +30,10 @@ class UserController:
         logger.info('User is updating his/her profile')
         try:
             r = token['role']
+            print(r)
             if r != 'user':
                 logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                raise NotAuthorizedError
+                abort(403,detail= "Not authorized")
             user_id = token['sub'] 
             name = data['name']
             email = data['email']
@@ -51,7 +52,8 @@ class UserController:
             r = token['role']
             if r != 'user':
                 logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                raise NotAuthorizedError
+                abort(403,detail= "Not authorized")
+
             user_id = token['sub']
             tasks = ub_obj.view_my_tasks(user_id)
             print(tasks)

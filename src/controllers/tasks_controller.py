@@ -17,7 +17,7 @@ class TasksController:
                 r = token['role']
                 if r != 'user':
                     logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                    raise NotAuthorizedError
+                    abort(401,detail = "You are not Authenticated")
                 user_id = token['sub']
                 task_id = create_id()
                 task_name = data['task_name']
@@ -26,7 +26,8 @@ class TasksController:
                 due_date = data['due_date']
                 category = data['category']     
                 tb_obj.create_new_tasks(task_id,user_id,task_name,task_desc,today_date,due_date,category)
-                return {"message":"Task created successfully"}
+                return {"task_id":task_id,
+                    "message":"Task created successfully"}
             except Exception as e:
                 raise e
 
@@ -39,7 +40,7 @@ class TasksController:
             r = token['role']
             if r != 'manager':
                 logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                raise NotAuthorizedError
+                abort(401,detail = "You are not Authenticated")
             man_id = token['sub']
             task_id = create_id()
             user_id = data['user_id']
@@ -49,7 +50,7 @@ class TasksController:
             due_date = data['due_date']
             category = data['category']
             tb_obj.assign_tasks_to_user_logic(task_id,user_id,task_name,task_desc,today_date,due_date,category,man_id)
-            return {"message":"Task assigned successfully"}
+            return {"task_id":task_id,"message":"Task assigned successfully"}
 
         except Exception as e:
             raise e
@@ -60,6 +61,8 @@ class TasksController:
         
         logger.info('User is updating tasks.')
         try:
+            if not token:
+                abort(401,detail = "You are not Authenticated")
             user_id = token['sub']
             task_id = data['task_id']
             task_name = data['task_name']
@@ -77,18 +80,18 @@ class TasksController:
             abort(404,message = 'No task found with the given task id')
  
     
-    def delete_tasks(self,token,data):
+    def delete_tasks(self,token,task_id):
         """This method deletes a selected task."""
 
         logger.info('User is trying to delete tasks.')
         try:
-            task_id = data['task_id']
             r = token['role']
+            id=token['sub']
             if r == 'user':
-                tb_obj.delete_my_tasks(task_id)
+                tb_obj.delete_my_tasks(task_id,id)
                 return{'message':"Task deleted successfully"}
             if r == 'manager':
-                tb_obj.delete_assigned_tasks(task_id)
+                tb_obj.delete_assigned_tasks(task_id,id)
                 return{'message':"Task deleted successfully"}
         except DataNotFoundError :
-            abort(404,message = "No task found with the given task id")
+            abort(404,message = "Enter correct task_id")

@@ -52,7 +52,7 @@ def fetch_data(query,*args ) :
 
     logger.info('Fetching data from the database')
     with DatabaseContextManager() as connection:
-        cursor = connection.cursor(pymysql.cursors.DictCursor)  
+        cursor = connection.cursor()  
         cursor.execute(query,*args)
         records = cursor.fetchall()
         return records
