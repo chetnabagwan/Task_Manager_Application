@@ -18,7 +18,6 @@ class Register(MethodView):
     def post(self,register_data):
         return auth_obj.RegisterController(register_data)
     
-    
 @blp.route("/login")
 class Login(MethodView):
     @blp.arguments(LoginSchema)

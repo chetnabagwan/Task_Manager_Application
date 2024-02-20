@@ -20,26 +20,22 @@ QUERY_FOR_CREATE_TASKS_TABLE : |
                               user_id INT, 
                               task_name VARCHAR(100), 
                               task_desc VARCHAR(40),
-                              date_created DATE,
-                              due_date DATE,
+                              date_created VARCHAR(50),
+                              due_date VARCHAR(50),
                               is_completed INT DEFAULT 0,
                               category VARCHAR(100),
-                              assigned_by VARCHAR(100),
-                              FOREIGN KEY (user_id) REFERENCES assigned_tasks(user_id) ON DELETE CASCADE) 
+                              assigned_by VARCHAR(100)) 
 
 QUERY_FOR_CREATE_ASSIGNED_TASKS_TABLE : |
                               CREATE TABLE IF NOT EXISTS assigned_tasks
-                              (man_id INT PRIMARY KEY,
+                              (man_id INT,
                               user_id INT, 
-                              task_id INT, 
-                              FOREIGN KEY (user_id) REFERENCES authentication(user_id) ON DELETE CASCADE,
+                              task_id INT PRIMARY KEY, 
                               FOREIGN KEY (task_id) REFERENCES tasks(task_id) ON DELETE CASCADE) 
 
 QUERY_TO_VERIFY_LOGIN : |
     SELECT * FROM authentication
     WHERE username=%s AND password= %s
-
-# QUERY_TO_ENABLE_FOREIGN_KEY : PRAGMA foreign_keys = 1
 
 QUERY_TO_ADD_IN_AUTH_TABLE : |
                             INSERT INTO authentication
@@ -60,7 +56,7 @@ QUERY_TO_VIEW_TASK_TABLE_USERS : |
  SELECT * FROM tasks
 
 INSERT_INTO_TASKS_TABLE_BY_MANAGER : |
-  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (%s,%s,%s,%s,%s,'pending',%s,%s)
+  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (%s,%s,%s,%s,%s,%s,0,%s,%s)
 
 INSERT_INTO_ASSIGNED_TASKS_TABLE : |
  INSERT INTO assigned_tasks (man_id, user_id, task_id) VALUES (%s,%s,%s)

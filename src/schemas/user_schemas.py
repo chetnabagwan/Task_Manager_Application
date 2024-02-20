@@ -9,7 +9,6 @@ class AssignTasksSchema(Schema):
     category =  fields.Str(required=True,validate=validate.Regexp(Config.GEN_REGEX))
     
 class CreateTasksSchema(Schema):
-    user_id = fields.Int(required=True)
     task_name = fields.Str(required=True,validate=validate.Regexp(Config.GEN_REGEX))
     task_desc = fields.Str(required=True,validate=validate.Regexp(Config.GEN_REGEX))
     due_date = fields.Date(required=True)
@@ -23,8 +22,10 @@ class UsersResponseSchema(Schema):
 
 class UpdateTaskSchema(Schema):
     task_id = fields.Int(required=True)
-    status = fields.Str(required=True)
-    due_date = fields.Date(required=True)
+    task_name = fields.Str()
+    task_desc = fields.Str()
+    due_date = fields.Date()
+    is_completed = fields.Int()
 
 class UpdateProfileSchema(Schema):
     name = fields.Str()

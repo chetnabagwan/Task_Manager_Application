@@ -1,4 +1,4 @@
-from utils.helper_functions import DataNotFoundError,create_userid
+from utils.helper_functions import DataNotFoundError,create_id
 from db.database_functions import write_to_database,update_data,fetch_data
 from utils.config import Config
 from pymysql import DatabaseError
@@ -15,16 +15,6 @@ class Manager:
             return users
         raise DatabaseError
         
-
-    def assign_tasks_to_user_logic(self,task_id,user,task_name,task_desc,today_date,due_date,category,man_id):
-        """This method assigns tasks to a selected user."""
-
-        try:    
-            write_to_database([Config.INSERT_INTO_TASKS_TABLE_BY_MANAGER,Config.INSERT_INTO_ASSIGNED_TASKS_TABLE],[(task_id,user,task_name,task_desc,today_date,due_date,category,man_id),
-           (man_id,user,task_id)])
-        except Exception as e :
-            raise e
-
 
     def view_status_of_assigned_tasks_logic(self,man_id):
         """This method shows status of tasks assigned by particular manager. """

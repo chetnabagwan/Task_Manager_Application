@@ -6,7 +6,7 @@ TASKS_CATEGORY_PROMPT : |
     3.For_later
 
 INSERT_INTO_TASKS_TABLE : |
-  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (%s,%s,%s,%s,%s,'pending',%s,'myself')
+  INSERT INTO tasks (task_id, user_id, task_name, task_desc ,date_created ,due_date,is_completed ,category,assigned_by) VALUES (%s,%s,%s,%s,%s,%s,0,%s,'myself')
     
 UPDATE_TASKS_OPTIONS: |
  1.Update due date
@@ -15,18 +15,26 @@ UPDATE_TASKS_OPTIONS: |
 UPDATE_DUE_DATE : |
   UPDATE tasks
   SET due_date = %s
-  WHERE task_name = %s
+  WHERE task_id = %s
 
 UPDATE_TASK_STATUS : |
  UPDATE tasks
- SET is_completed = "complete"
- WHERE task_name = %s
+ SET is_completed = 1
+ WHERE task_id = %s
 
+UPDATE_TASK : |
+  UPDATE tasks
+  SET task_name = %s,
+  task_desc = %s,due_date = %s,
+  is_completed = %s
+  WHERE task_id = %s
 
-VIEW_TASKS_TO_DELETE : SELECT * FROM tasks WHERE user_id = %s AND assigned_by = "myself"
+VIEW_TASKS_TO_DELETE_BY_USERS : SELECT task_id FROM tasks WHERE user_id = %s AND assigned_by = "myself"
 
-DELETE_MY_TASKS : |
- DELETE from tasks WHERE user_id = %s AND task_id=%s AND assigned_by = 'myself'
+GET_TASKS_TO_DELETE_BY_MANAGER : SELECT task_id FROM tasks WHERE assigned_by=man_id
+
+DELETE_TASKS : |
+ DELETE from tasks WHERE task_id=%s 
 
 VIEW_TASKS : |
  SELECT * FROM tasks WHERE user_id = %s

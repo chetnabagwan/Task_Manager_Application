@@ -1,7 +1,7 @@
 import logging
 from flask import abort
 from business.user import User
-from utils.helper_functions import DataNotFoundError,NotAuthorizedError,create_userid,date_today
+from utils.helper_functions import DataNotFoundError,NotAuthorizedError,create_id,date_today
 from utils.config import Config
 
 logger = logging.getLogger('main.user_controllers')
@@ -43,27 +43,6 @@ class UserController:
             raise e
     
 
-    def create_new_tasks(self,token,data):
-        """This method creates new task for user"""
-        logger.info(f'User:{self.user_id} is creating new tasks.')
-
-        try:    
-            r = token['role']
-            if r != 'user':
-                logger.warning(f'Unauthorized user {token["sub"]} is assigning tasks to users.')
-                raise NotAuthorizedError
-            user_id = token['sub']
-            task_id = create_userid()
-            task_name = data['task_name']
-            task_desc = data['task_desc']
-            today_date = date_today()
-            due_date = data['due_date']
-            category = data['category']     
-            ub_obj.create_new_tasks(task_id,user_id,task_name,task_desc,today_date,due_date,category)
-        except Exception as e:
-            raise e
-
-
     def view_my_tasks(self,token):
         """This method allows a user to view his/her all tasks"""
 
@@ -82,21 +61,7 @@ class UserController:
         except Exception as e:
             raise e
 
-    def update_my_tasks(self,task_id,status,due_date):
-        """This method helps user to update his/her tasks. User can update both status and duedate of a task"""
-        
-        logger.info('User is updating tasks.')
-        try:
-            ub_obj.update_my_tasks(task_id,status,due_date)
-        except Exception as e :
-            raise e
+    
 
 
-    def delete_my_tasks(self,task_id):
-        """This method deletes a selected task."""
-
-        logger.info('User is trying to delete tasks.')
-        try:
-            ub_obj.delete_my_tasks(task_id)
-        except Exception as e :
-            raise e
+   

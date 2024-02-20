@@ -96,13 +96,13 @@ class Config:
     INSERT_INTO_TASKS_TABLE = None
     TASKS_CATEGORY_PROMPT = None
     UPDATE_TASKS_OPTIONS = None
-    UPDATE_DUE_DATE =None
-    UPDATE_TASK_STATUS = None
+    UPDATE_TASK = None
     VIEW_TASKS = None
-    DELETE_MY_TASKS =None
-    VIEW_TASKS_TO_DELETE =None
+    DELETE_TASKS =None
     VIEW_MY_PROFILE =None
     UPDATE_MY_PROFILE = None
+    VIEW_TASKS_TO_DELETE_BY_USERS = None
+    GET_TASKS_TO_DELETE_BY_MANAGER = None
 
     @classmethod
     def load(cls):
@@ -212,13 +212,13 @@ class Config:
             cls.INSERT_INTO_TASKS_TABLE = data['INSERT_INTO_TASKS_TABLE']
             cls.TASKS_CATEGORY_PROMPT = data['TASKS_CATEGORY_PROMPT']
             cls.UPDATE_TASKS_OPTIONS = data['UPDATE_TASKS_OPTIONS']
-            cls.UPDATE_DUE_DATE = data['UPDATE_DUE_DATE']
-            cls.UPDATE_TASK_STATUS = data['UPDATE_TASK_STATUS']
+            cls.UPDATE_TASK = data['UPDATE_TASK']
             cls.VIEW_TASKS = data['VIEW_TASKS']
-            cls.DELETE_MY_TASKS = data['DELETE_MY_TASKS']
-            cls.VIEW_TASKS_TO_DELETE = data['VIEW_TASKS_TO_DELETE']
+            cls.DELETE_TASKS = data['DELETE_TASKS']
             cls.VIEW_MY_PROFILE = data['VIEW_MY_PROFILE']
             cls.UPDATE_MY_PROFILE = data['UPDATE_MY_PROFILE']
+            cls.VIEW_TASKS_TO_DELETE_BY_USERS = data['VIEW_TASKS_TO_DELETE_BY_USERS']
+            cls.GET_TASKS_TO_DELETE_BY_MANAGER = data['GET_TASKS_TO_DELETE_BY_MANAGER']
             
   
 Config.load()

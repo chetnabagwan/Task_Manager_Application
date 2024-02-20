@@ -24,6 +24,6 @@ def hash_pwd(password):
     h_pwd =  hashlib.sha256(password.encode()).hexdigest()
     return h_pwd
 
-def create_userid():
+def create_id():
     id = int(shortuuid.ShortUUID('123456789').random(length=4))
     return id
