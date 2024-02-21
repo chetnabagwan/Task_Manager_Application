@@ -22,6 +22,7 @@ def create_app():
     jwt = JWTManager(app) 
     register_blueprints(api)
     logger.info('Application ended')
+    
     @app.route('/status',methods=['GET'])
     def hello():
         return {

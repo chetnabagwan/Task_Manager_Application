@@ -29,7 +29,7 @@ UPDATE_TASK : |
   is_completed = %s
   WHERE task_id = %s
 
-VIEW_TASKS_TO_DELETE_BY_USERS : SELECT task_id FROM tasks WHERE user_id = %s AND assigned_by = "myself"
+VIEW_TASKS_TO_DELETE_BY_USERS : SELECT task_id FROM tasks WHERE user_id = %s AND assigned_by = 'myself';
 
 GET_TASKS_TO_DELETE_BY_MANAGER : SELECT task_id FROM tasks WHERE assigned_by=%s
 

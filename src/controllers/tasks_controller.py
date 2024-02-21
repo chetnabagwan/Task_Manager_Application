@@ -77,7 +77,7 @@ class TasksController:
                 tb_obj.update_assigned_tasks(user_id,task_id,task_name,task_desc,due_date,is_completed)
                 return{'message':"Task updated successfully"}
         except DataNotFoundError :
-            abort(404,message = 'No task found with the given task id')
+            abort(400,message = 'No task found with the given task id')
  
     
     def delete_tasks(self,token,task_id):
@@ -88,10 +88,12 @@ class TasksController:
             r = token['role']
             id=token['sub']
             if r == 'user':
+                print(task_id)
                 tb_obj.delete_my_tasks(task_id,id)
                 return{'message':"Task deleted successfully"}
             if r == 'manager':
                 tb_obj.delete_assigned_tasks(task_id,id)
                 return{'message':"Task deleted successfully"}
-        except DataNotFoundError :
-            abort(404,message = "Enter correct task_id")
+        except Exception as e:
+            raise e
+            # abort(400,message = "Enter correct task_id")

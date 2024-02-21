@@ -30,7 +30,6 @@ class Task:
             tasks = fetch_data(Config.VIEW_TASKS_TO_DELETE_BY_USERS,(user_id,))
             for task in tasks:
                 if task['task_id']==task_id:
-                    print(task['task_id'])
                     update_data(Config.UPDATE_TASK,(task_name,task_desc,due_date,is_completed,task_id))
                     return
                 
@@ -60,11 +59,10 @@ class Task:
         try:
             tasks = fetch_data(Config.VIEW_TASKS_TO_DELETE_BY_USERS,(user_id,))
             for task in tasks:
-                if task['task_id']==task_id:
+                if task['task_id']==int(task_id):
                     update_data(Config.DELETE_TASKS,(task_id,))
-                    print("got it user")
                     return     
-            raise DataNotFoundError
+             
         except Exception as e:
             raise e
 
@@ -72,15 +70,11 @@ class Task:
         """This method deletes the assigned tasks by manager"""
 
         try:
-            print(task_id)
             tasks = fetch_data(Config.GET_TASKS_TO_DELETE_BY_MANAGER,(man_id,))
-            print(tasks)
+          
             for task in tasks:
                 if task['task_id']==int(task_id):
-                    print("hello")
                     update_data(Config.DELETE_TASKS,(task_id,))
-                    print("got it manager")
-
                     return  
             raise DataNotFoundError
         except Exception as e:
