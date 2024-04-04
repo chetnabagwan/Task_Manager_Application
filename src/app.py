@@ -1,4 +1,6 @@
 import logging
+
+from flask_cors import CORS
 from utils.flaskappconfig import flask_config,register_blueprints
 from flask import Flask
 from flask_smorest import Api
@@ -16,6 +18,7 @@ def create_app():
     '''Creates and configures the flask app'''
 
     app = Flask(__name__)
+    CORS(app)
     logger.info('Application started')
     flask_config(app)
     api = Api(app)
